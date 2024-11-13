@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sistema-clubes-frontend": {
+    "apc-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -11,11 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sistema-clubes-frontend",
+            "outputPath": {
+              "base": "dist/apc-frontend"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -31,7 +32,8 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -50,9 +52,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sistema-clubes-frontend:build:production"
+              "buildTarget": "apc-frontend:build:production"
             },
             "development": {
-              "buildTarget": "sistema-clubes-frontend:build:development"
+              "buildTarget": "apc-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "sistema-clubes-frontend:build"
+            "buildTarget": "apc-frontend:build"
           }
         },
         "test": {
