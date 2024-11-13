@@ -1,0 +1,76 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volverAProductos()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container mb-1">
+        <h1>Agregar nuevo Producto</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-0">
+            <form novalidate>
+
+                <div class="row mb-2">
+                    <div class="col-10">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Ingrese el SKU</mat-label>
+                            <input
+                                [(ngModel)]="productoCatalogoData.producto.sku"
+                                type="text"
+                                placeholder="Digite el sku del producto"
+                                name="sku" 
+                                matInput
+                                (change)="onChangeSku()"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <button class="fw-normal btn btn-dark rounded w-100 py-2">
+                            <div 
+                                class="d-flex justify-content-between align-items-start"
+                                (click)="buscarProductoPorSku()"
+                            >
+                                <i class="fa-solid fa-magnifying-glass fs-5" style="color: #ffffff;"></i>
+                                <span style="color: #ffffff;">Buscar</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            
+                <mat-form-field appearance="fill" class="w-100 mb-2">
+                    <mat-label>Producto seleccionado</mat-label>
+                    <input
+                        [(ngModel)]="productoCatalogoData.producto.nombreProducto"
+                        type="text"
+                        name="nombre" 
+                        matInput
+                        disabled
+                    >
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Precio original del producto seleccionado</mat-label>
+                    <input
+                        [(ngModel)]="productoCatalogoData.producto.precio"
+                        type="number"
+                        name="precio"
+                        matInput
+                        disabled
+                    >
+                </mat-form-field>
+                
+                <div class="d-flex justify-content-center">
+                    <button 
+                        [disabled]="!skuChanged"
+                        (click)="guardarInformacion()" 
+                        mat-raised-button 
+                        style="background-color: #00CED1; color: white;"
+                    >
+                        Agregar
+                    </button>
+                </div>
+            
+            </form>
+        </div>
+    </div>
+</mat-card>

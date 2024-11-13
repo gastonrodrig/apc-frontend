@@ -1,0 +1,10 @@
+.metodo-pago {
+    background-color: white;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.metodo-pago:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #bababa;
+}

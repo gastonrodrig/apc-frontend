@@ -1,0 +1,17 @@
+.link-text {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #3a3a3a;
+    transition: color 0.3s ease;
+}
+
+.link-text:hover {
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.w-75 {
+    width: 75%;
+}

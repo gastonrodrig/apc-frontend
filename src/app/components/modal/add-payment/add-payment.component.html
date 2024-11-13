@@ -1,0 +1,177 @@
+<div class="p-5">
+    <div class="justify-items-center">
+        <ng-container *ngIf="dataTipoPago.metodoPago === 1">
+            <img src="https://giordota.com/images/wallet/yape.png">
+            <p class="mt-1">Yape</p> 
+        </ng-container>
+        <ng-container *ngIf="dataTipoPago.metodoPago === 2">
+            <img src="https://giordota.com/images/wallet/bcp.png">
+            <p class="mt-1">BCP</p>
+        </ng-container>
+        <ng-container *ngIf="dataTipoPago.metodoPago === 3">
+            <img src="https://giordota.com/images/wallet/plin.png">
+            <p class="mt-1">Plin</p>
+        </ng-container>
+        <ng-container *ngIf="dataTipoPago.metodoPago === 4">
+            <img src="https://giordota.com/images/wallet/tarjeta.png">
+            <p class="mt-1">CCI</p>
+        </ng-container>
+    </div>
+    <ng-container *ngIf="dataTipoPago.metodoPago === 1 || dataTipoPago.metodoPago === 3 ">
+        <div class="d-flex justify-content-center my-3">
+            <p class="fw-light text-center" style="font-size: medium;">Escanee el Código QR, realice el pago de <strong>S/. {{ dataTipoPago.total }}</strong>, y complete la siguiente información:</p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="dataTipoPago.metodoPago === 1 || dataTipoPago.metodoPago === 3">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="justify-items-center me-3">
+                    <p class="mb-1"><strong>ELSAVAL</strong></p>
+                        <ng-container *ngIf="dataTipoPago.metodoPago === 1">
+                            <img class="rounded" src="../../../../assets/yape.png" style="width: 180px;">
+                        </ng-container>
+                        <ng-container *ngIf="dataTipoPago.metodoPago === 3">
+                            <img class="rounded" src="../../../../assets/plin.png" style="width: 180px;">
+                        </ng-container>
+                    <p class="mt-1"><strong>989 160 593</strong></p>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <form (submit)="registrarPago()">
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-center">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Número de Operación</mat-label>
+                                    <input
+                                        [(ngModel)]="nOperacion"
+                                        [ngModelOptions]="{standalone: true}"
+                                        type="text"
+                                        appSoloNumeros
+                                        placeholder="Digite el Número de Operación"
+                                        matInput
+                                    >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="d-flex justify-content-center mb-2">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Fecha de la Operación</mat-label>
+                                    <input 
+                                        [(ngModel)]="fechaOperacion"
+                                        [ngModelOptions]="{standalone: true}"
+                                        matInput  
+                                        [max]="maxDate"
+                                        [matDatepicker]="picker"
+                                    >
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Hora</mat-label>
+                                <input
+                                    [(ngModel)]="hourMinutes"
+                                    [ngModelOptions]="{standalone: true}"
+                                    type="text"
+                                    placeholder="HH:MM"
+                                    matInput
+                                    (change)="formatHour()"
+                                >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-end">
+                                <button class="my-1" mat-raised-button style="background-color: #00CED1; color: white; margin-right: 10px;">
+                                    Registrar Pago
+                                </button>
+                                <div class="p-2 mt-1" style="cursor: pointer; background-color: transparent; color: rgb(35, 35, 35); text-align: center; border-radius: 5px; display: inline-block; font-size: 16px;">
+                                    <p (click)="closeModel()" style="margin: 0; padding: 1px;"><strong class="fw-normal">Cancelar</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="dataTipoPago.metodoPago === 2 || dataTipoPago.metodoPago === 4">
+        <div class="d-grid justify-content-start fw-normal my-2">
+            <p class="fs-6"><strong>Como realizar tu pago por Banca Móvil o Banca por Internet:</strong></p>
+            <p>1. Ingresa a tu <strong>Banca Movil (Aplicacion)</strong> o <strong>Banca Web (Internet)</strong></p>
+            <p>2. Selecciona <strong>Transferir Dinero</strong> o <strong>Transferencias a Terceros</strong></p>
+            <ng-container *ngIf="dataTipoPago.metodoPago === 2">
+                <p>3. Ingresa el siguiente Numero de Cuenta:</p>
+                <p><strong class="fs-6">0011-0814-0225035275</strong></p>
+            </ng-container>
+            <ng-container *ngIf="dataTipoPago.metodoPago === 4">
+                <p>3. Ingresa el siguiente CCI:</p>
+                <p><strong class="fs-6">00219110601542208357</strong></p>
+            </ng-container>
+            <p>4. Confirma el titular: <strong>ELSAVAL</strong></p>
+            <p>5. Escribe el monto de S/. <strong>{{ dataTipoPago.total }}</strong></p>
+        </div>
+        <form (submit)="registrarPago()">
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-center">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Número de Operación</mat-label>
+                            <input
+                                [(ngModel)]="nOperacion"
+                                [ngModelOptions]="{standalone: true}"
+                                type="text"
+                                placeholder="Digite el Número de Operación"
+                                matInput
+                                appSoloNumeros
+                            >
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="d-flex justify-content-center mb-2">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Fecha de la Operación</mat-label>
+                            <input 
+                                [(ngModel)]="fechaOperacion"
+                                [ngModelOptions]="{standalone: true}"
+                                matInput  
+                                [max]="maxDate"
+                                [matDatepicker]="picker"
+                            >
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Hora</mat-label>
+                        <input
+                            [(ngModel)]="hourMinutes"
+                            [ngModelOptions]="{standalone: true}"
+                            type="text"
+                            placeholder="HH:MM"
+                            matInput
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="my-1" mat-raised-button style="background-color: #00CED1; color: white; margin-right: 10px;">
+                            Registrar Pago
+                        </button>
+                        <div class="p-2 mt-1" style="cursor: pointer; background-color: transparent; color: rgb(35, 35, 35); text-align: center; border-radius: 5px; display: inline-block; font-size: 16px;">
+                            <p (click)="closeModel()" style="margin: 0; padding: 1px;"><strong class="fw-normal">Cancelar</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+</div>

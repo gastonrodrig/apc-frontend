@@ -1,0 +1,25 @@
+<mat-card style="padding: 15px;">
+    <div class="container" style="max-width: 100%;">
+      <h1>Detalles de pedido</h1>
+    </div>
+    <div class="filter-container">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </div>
+    <table class="table-container">
+      <tr>
+        <th>Foto</th>
+        <th>Producto</th>
+        <th>SKU</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Precio Total</th>
+      </tr>
+        <td><img [src]="requestDetails.product.imagen" alt="Imagen del producto" class="imagen-producto" style="width: 125px; height: 150px;"></td>
+        <td>{{ requestDetails.product.nombreProducto }}</td>
+        <td>{{ requestDetails.product.sku }}</td>
+        <td>{{ requestDetails.quantity }}</td>
+        <td>{{ requestDetails.unitPrice | currency:'S/. ':'symbol':'1.2-2' }}</td>
+        <td>{{ requestDetails.totalPrice | currency:'S/. ':'symbol':'1.2-2' }}</td>
+    </table>
+  </mat-card>
+  

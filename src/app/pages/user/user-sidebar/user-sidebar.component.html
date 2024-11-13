@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-action-list class="sidebar">
+    <div style="padding-left: 10px; padding-top: 5px;" class="sidebarTitle">
+      Dashboard
+    </div>
+    <button routerLink="/user" mat-list-item class="sidebarlistItem">
+      <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>home</mat-icon> Inicio
+    </button>
+
+    <div style="padding-left: 10px; padding-top: 5px;" class="sidebarTitle">
+      Información
+    </div>
+    <button mat-list-item routerLink="/user/perfil" class="sidebarlistItem">
+      <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>person</mat-icon> Información personal
+    </button>
+    <button mat-list-item routerLink="/user/historial-de-pedidos" class="sidebarlistItem">
+      <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>history</mat-icon> Historial de pedidos
+    </button>
+    <button mat-list-item routerLink="/user/direcciones" class="sidebarlistItem">
+      <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>map</mat-icon> Direcciones guardadas
+    </button>
+    <button mat-list-item routerLink="/user/solicitudes" class="sidebarlistItem">
+      <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>library_books</mat-icon> Solicitudes
+    </button>
+  </mat-action-list>
+</mat-card>

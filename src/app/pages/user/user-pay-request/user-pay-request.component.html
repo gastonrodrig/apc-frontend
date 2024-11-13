@@ -1,0 +1,67 @@
+<form (submit)="guardarInformacion()">
+    <div class="row my-4">
+        <div class="col-lg-9">  
+            <h2 class="fw-normal">Métodos de Pago</h2>
+            <div class="bg-white rounded shadow-sm p-4">
+                <div class="d-flex justify-content-start">
+                    <div (click)="openPaymentDialog(1)" class="rounded shadow-sm px-4 pt-3 pb-0 me-4 metodo-pago">
+                        <img src="https://giordota.com/images/wallet/yape.png">
+                        <p class="text-center mt-2">Yape</p>
+                    </div>
+                    <div (click)="openPaymentDialog(2)" class="rounded shadow-sm px-4 pt-3 pb-0 me-4 metodo-pago">
+                        <img src="https://giordota.com/images/wallet/bcp.png">
+                        <p class="text-center mt-2">BCP</p>
+                    </div>
+                    <div (click)="openPaymentDialog(3)" class="rounded shadow-sm px-4 pt-3 pb-0 me-4 metodo-pago">
+                        <img src="https://giordota.com/images/wallet/plin.png">
+                        <p class="text-center mt-2">Plin</p>
+                    </div>
+                    <div (click)="openPaymentDialog(4)" class="rounded shadow-sm px-4 pt-3 pb-0 metodo-pago">
+                        <img src="https://giordota.com/images/wallet/tarjeta.png">
+                        <p class="text-center mt-2">CCI</p>
+                    </div>
+                </div>
+                <ng-container *ngIf="dataPago !== undefined || dataPago === null">
+                    <hr class="w-100 mt-4" style="border-color: rgb(0, 0, 0); border-width: 1px;">
+                    <p><i class="fa-solid fa-square-check" style="color: #00c241;"></i> Pago registrado ({{ orderData.tipoOperacion }})</p>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <h2 class="fw-normal">Resumen de la orden</h2>
+            <div class="bg-white p-3 my-3 rounded shadow-sm">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">Subtotal: </p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="d-flex fw-bold justify-content-end">S/. {{ subtotal() }}</h5>
+                    </div>
+                </div>
+                <hr class="w-100 mt-2" style="border-color: rgb(188, 188, 188); border-width: 1px;">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">IGV: </p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="d-flex fw-bold justify-content-end">S/. {{ igv() }}</h5>
+                    </div>
+                </div>
+                <hr class="w-100 mt-2" style="border-color: rgb(0, 0, 0); border-width: 1px;">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">Total: </p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="d-flex fw-bold justify-content-end">S/. {{ totalCart() }}</h5>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-2">
+                    <button mat-button class="fw-normal btn btn-dark rounded btn-block px-4">
+                        Terminar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

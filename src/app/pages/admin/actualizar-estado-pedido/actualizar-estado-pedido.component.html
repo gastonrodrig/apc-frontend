@@ -1,0 +1,47 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volverAProductos()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Agregar cantidad de Productos</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form *ngIf="order" (submit)="actualizarDatos()">
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Número de Pedido</mat-label>
+                    <input [(ngModel)]="order.orderId" type="text" name="producto"
+                        placeholder="Digite el nombre del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input [(ngModel)]="order.streetAddress" type="text" name="sku"
+                        placeholder="Digite el sku del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Precio</mat-label>
+                    <input [(ngModel)]="order.totalPrice" type="text" name="precio"
+                        placeholder="Digite el precio del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Estado Actual</mat-label>
+                    <input [(ngModel)]="order.status" type="text" name="stock" placeholder="Digite la cantidad del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Seleccionar Estado</mat-label>
+                    <mat-select [(ngModel)]="estadoSeleccionado" name="estado">
+                      <mat-option *ngFor="let estado of estados" [value]="estado">
+                        {{ estado }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>                  
+                <div class="row">
+                    <div class="containeractualizar text-center">
+                        <button mat-raised-button type="submit" style="background-color: #00CED1; color: white;">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,31 @@
+.link-text {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.link-text:hover {
+  color: #103061;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+h1,
+button {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+h1 {
+  align-self: flex-start;
+}
+
+button[disabled] {
+  background-color: #d3d3d3;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

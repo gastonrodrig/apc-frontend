@@ -1,0 +1,28 @@
+.profile-image{
+    max-width: 500px;
+    max-height: 250px;
+    border: 2px solid gainsboro;
+    border-radius: 50%;
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr td{
+    padding: 15px 10px;
+    border: 0.5px solid gainsboro;
+}
+.contenBoton{
+    display: flex;
+    justify-content: center;
+}
+.botonAdmin{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.detalleAdmin{
+    padding-top: 15px;
+    padding-left: 15px;
+}

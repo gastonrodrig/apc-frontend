@@ -1,0 +1,8 @@
+.justify-items-center {
+    display: grid !important;
+    justify-items: center;
+}
+
+.w-75 {
+    width: 75%;
+}

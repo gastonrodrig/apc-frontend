@@ -1,0 +1,12 @@
+<div class="w-auto rounded overflow-hidden">
+    <a [routerLink]="'/detalleproducto/' + productoCatalogo.producto.productoId">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img class="hover:grow hover:shadow-lg " [src]="productoCatalogo.producto.imagen"
+                [alt]="productoCatalogo.producto.nombreProducto" style="width: 250px; height: 300px;">
+        </div>
+        <div class="pt-3">
+            <p class="pt-1 text-gray-900">{{ productoCatalogo.producto.nombreProducto }}</p>
+            <p class="pt-1 text-gray-900">S/. {{ productoCatalogo.producto.precio }}</p>
+        </div>
+    </a>
+</div>

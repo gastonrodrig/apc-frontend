@@ -1,0 +1,60 @@
+
+.hover\:grow {
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.hover\:grow:hover {
+  transform: scale(1.02);
+}
+
+th,td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 7px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.pagination {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  --bs-pagination-color: none;
+  --bs-pagination-hover-color: none;
+  --bs-pagination-focus-color: none;
+  --bs-pagination-active-border-color: none;
+  --bs-pagination-focus-box-shadow: none;
+}
+
+.pagination .page-item {
+  margin-right: 5px;
+}
+
+.custom-btn:disabled {
+  opacity: 0.5;
+}
+
+.custom-3-prod {
+  width: 19%;
+}
+
+.custom-1-prod {
+  width: 37%;
+}

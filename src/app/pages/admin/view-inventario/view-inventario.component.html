@@ -1,0 +1,39 @@
+<mat-card style="padding: 15px;">
+    <div class="container" style="max-width: 100%;">
+        <h1>Movimientos</h1>
+    </div>
+    <div class="filter-container">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <div class="search-bar-container">
+            <input type="text" [(ngModel)]="searchTerm1" class="search-bar-input" placeholder="Buscar por producto" />
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+    <table class="table-container">
+        <tr>
+            <th>N°</th>
+            <th>Producto</th>
+            <th>SKU</th>
+            <th>Cantidad</th>
+            <th>Tipo de Movimiento</th>
+            <th>Fecha</th>
+        </tr>
+        <tr *ngFor="let e of displayedProductos(); let i = index" mat-subheader>
+            <td>{{ (currentPage1 - 1) * rowsPerPage1 + i + 1 }}</td>
+            <td>{{ e.producto.nombreProducto }}</td>
+            <td>{{ e.producto.sku }}</td>
+            <td>{{ e.cantidad }}</td>
+            <td>{{ e.tipo }}</td>
+            <td>{{ e.dateCreated | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+        </tr>
+    </table>
+    <div class="pagination">
+        <button (click)="prevPage1()" [disabled]="currentPage1 === 1">
+            <i class="fa fa-chevron-left"></i> Anterior
+        </button>
+        <button (click)="nextPage1()" [disabled]="currentPage1 === totalPages1">
+            Siguiente <i class="fa fa-chevron-right"></i>
+        </button>
+    </div>
+</mat-card>

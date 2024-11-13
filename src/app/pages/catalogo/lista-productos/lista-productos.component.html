@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div [ngClass]="{
+      'col-lg-2': productosFiltrados.length >= 4,
+      'custom-3-prod': productosFiltrados.length === 3,
+      'col-lg-3': productosFiltrados.length === 2,
+      'custom-1-prod': productosFiltrados.length === 1,
+      'col-lg-5': productosFiltrados.length === 0,
+    }">
+      <div class="d-flex justify-content-start" style="margin-top: 20px;">
+        <h2>FILTROS</h2>
+      </div>
+      <!-- FILTRADO -->
+      <div class="d-flex search-bar-container pt-1 pb-3">
+        <input type="text" class="w-100 justify-content-start search-bar-input" [(ngModel)]="searchTerm"
+          (input)="filtrarProductosBusqueda()" placeholder="Buscar por nombre">
+        <i class="m-2 justify-content-end fas fa-search search-icon"></i>
+      </div>
+      <div class="py-2">
+        <div class="card-header d-flex align-items-start">
+          <h3 class="title"><strong>Tipo de Producto</strong></h3>
+        </div>
+        <div class="filter-content text-left">
+          <div class="card-body">
+            <form>
+              <ng-container *ngFor="let categoria of categorias;">
+                <label class="form-check d-flex align-items-start">
+                  <input class="form-check-input" type="checkbox"
+                    (change)="filtrarProductosPorCategoria($event, categoria)" style="margin-right: 8px;">
+                  <span class="form-check-label">
+                    {{ categoria.nombre }}
+                  </span>
+                </label>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="py-2">
+        <div class="card-header d-flex align-items-start">
+          <h3 class="title"><strong>Precio</strong></h3>
+        </div>
+        <div class="filter-content text-left">
+          <div class="card-body">
+            <form>
+              <label class="form-check d-flex align-items-start">
+                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 0, 50)"
+                  style="margin-right: 8px;">
+                <span class="form-check-label">Menos de S/.50</span>
+              </label>
+              <label class="form-check d-flex align-items-start">
+                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 50, 100)"
+                  style="margin-right: 8px;">
+                <span class="form-check-label">S/.50 - S/.100</span>
+              </label>
+              <label class="form-check d-flex align-items-start">
+                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 100, 150)"
+                  style="margin-right: 8px;">
+                <span class="form-check-label">S/.100 - S/.150</span>
+              </label>
+              <label class="form-check d-flex align-items-start">
+                <input class="form-check-input" type="checkbox"
+                  (change)="filtrarProductosPorPrecio($event, 150, 100000)" style="margin-right: 8px;">
+                <span class="form-check-label">Mas de S/.150</span>
+              </label>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="{
+      'col-lg-10': productosFiltrados.length >= 4,
+      'col-lg-9': productosFiltrados.length === 3,
+      'col-lg-8': productosFiltrados.length === 2,
+      'col-lg-7': productosFiltrados.length === 1 || productosFiltrados.length === 0,
+    }">
+      <div class="row">
+        <!-- PAGINACION -->
+        <div class="col-12">
+          <div class="text-gray-600 body-font">
+            <div class="white-rectangle">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                  <!-- Botón de página anterior -->
+                  <li class="page-item">
+                    <button class="btn btn-link page-link prev-next" (click)="prevPage()"
+                      style="background-color: transparent; border: none" [disabled]="currentPage === 1">
+                      <i class="fas fa-chevron-left"></i>
+                    </button>
+                  </li>
+                  <!-- Botones de números de página -->
+                  <li class="page-item" *ngFor="let page of totalPagesArray">
+                    <button class="page-link bg-dark rounded-circle text-white custom-btn" (click)="goToPage(page)"
+                      [disabled]="currentPage === page">{{ page }}</button>
+                  </li>
+                  <!-- Botón de página siguiente -->
+                  <li class="page-item">
+                    <button class="btn btn-link page-link prev-next" (click)="nextPage()"
+                      style="background-color: transparent; border: none" [disabled]="currentPage === totalPages">
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <!-- LISTADO -->
+        <div class="col-12">
+          <div class="row" style="margin-top: 65px;">
+            <ng-container *ngIf="productosFiltrados.length === 0">
+              <p class="text-center">No existen productos filtrados.</p>
+            </ng-container>
+            <ng-container *ngIf="productosFiltrados.length !== 0">
+              <ng-container *ngFor="let productoCatalogo of displayedProductos();">
+                <div [ngClass]="{
+                  'col-lg-3 col-md-4': productosFiltrados.length >= 4,
+                  'col-lg-4 ': productosFiltrados.length === 3,
+                  'col-lg-6 col-md-6': productosFiltrados.length === 2,
+                  'col-lg-12': productosFiltrados.length === 1
+                }">
+                  <app-producto-item [productoCatalogo]="productoCatalogo"></app-producto-item>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

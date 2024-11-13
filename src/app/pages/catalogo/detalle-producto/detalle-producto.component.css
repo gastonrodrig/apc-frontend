@@ -1,0 +1,30 @@
+.accordion {
+    --bs-accordion-bg: transparent;
+    --bs-accordion-active-color: none;
+    --bs-accordion-btn-focus-box-shadow: transparent;
+    --bs-accordion-active-bg: transparent;
+    --bs-accordion-border-color: transparent;
+}
+
+h2.accordion-header {
+    margin-bottom: 0;
+}
+
+.accordion:focus {
+    outline: none;
+}
+
+.accordion-button{
+    padding: revert;
+    font-size: 20px;
+}
+
+.input-transp {
+    border: transparent;
+    background-color: transparent;
+    padding: 5px;
+}
+
+.btn:disabled {
+    background-color: #5a646e; /* Cambia este color al que desees */
+}

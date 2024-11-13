@@ -1,0 +1,96 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volverAProductos()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Agregar nuevo Producto</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form (ngSubmit)="guardarInformacion()" novalidate>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Nombre del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.nombreProducto"
+                        type="text"
+                        name="producto"
+                        placeholder="Digite el nombre del producto"
+                        matInput
+                    >
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>SKU del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.sku"
+                        type="text"
+                        name="sku"
+                        placeholder="Digite el SKU del producto"
+                        matInput
+                    >
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Descripción del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.descripcion"
+                        type="text"
+                        name="descripcion"
+                        placeholder="Digite la descripción del producto"
+                        matInput
+                    >
+                </mat-form-field>
+                
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Precio del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.precio"
+                        type="text"
+                        name="precio"
+                        placeholder="Digite el precio del producto"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Stock inicial del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.stock"
+                        type="text"
+                        name="stock"
+                        placeholder="Digite la cantidad del producto en stock"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>URL de imagen del producto</mat-label>
+                    <input
+                        [(ngModel)]="productoData.imagen"
+                        type="text"
+                        name="url"
+                        placeholder="Digite el URL de la imagen del producto"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Seleccione la Categoria</mat-label>
+                    <mat-select 
+                        name="categoria" 
+                        [(ngModel)]="productoData.categoria.categoriaId"
+                    >
+                        <mat-option *ngFor="let e of categorys" [value]="e.categoriaId">
+                            {{e.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <div class="row">
+                    <div class="container text-center">
+                        <button mat-raised-button style="background-color: #00CED1; color: white;">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

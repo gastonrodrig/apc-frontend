@@ -1,0 +1,216 @@
+.dashboard-socio {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 90%;
+}
+
+.dashboard-socio .bienvenido {
+    color: #222;
+    margin-left: 15px;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.datos {
+    width: 70%;
+    border: 2px solid #ddd;
+    height: 300px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 200%;
+    height: auto;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+.event-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-title {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.event-image {
+    width: 100%;
+    height: auto;
+}
+
+.expand-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border: none;
+    padding: 4px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0f77e6;
+}
+
+.expand-button:hover {
+    background-color: #0056b3;
+}
+
+
+.arriba {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.elsaval {
+    color: #00CED1;
+    font-weight: bold;
+}
+
+.custom-calendar {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.calendar-container {
+    text-align: center;
+    margin: 0 10px;
+
+}
+
+.contenedor-flex {
+    display: flex;
+}
+
+.elemento-35 {
+    height: 300px;
+    border: 1px solid #ddd;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.elemento-35 h2{
+    margin: 0;
+}
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+caption {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+td {
+    cursor: pointer;
+}
+
+.prev-month,
+.next-month {
+    color: #ccc;
+}
+
+.current-month {
+    color: #000;
+    font-weight: bold;
+}
+
+.current-day {
+    background-color: #F9E1DF;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.event-title {
+    color: #333;
+    font-size: 24px;
+    margin: 0;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+}
+.line{
+    width: 100%;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+.event-location {
+    font-size: 16px;
+    margin: 10px 0;
+    align-self: flex-start
+}
+.event-location strong{
+    color: rgb(117, 66, 0);
+}
+.event-description {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.event-link {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.event-link:hover {
+    background-color: #0056b3;
+}

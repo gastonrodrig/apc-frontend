@@ -1,0 +1,88 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+
+        <h1 class="text-center mt-5">Crea Tu Cuenta</h1>
+        <hr class="my-0 mb-4" style="opacity: 0.2;">
+        <form (ngSubmit)="formSubmit()">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nombre de usuario</mat-label>
+            <input required [(ngModel)]="user.username" name="username" matInput
+              placeholder="Digite su nombre de usuario">
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input 
+              [(ngModel)]="user.password"
+              required 
+              name="password" 
+              type="password" 
+              matInput
+              placeholder="Digite su contraseña"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input 
+              [(ngModel)]="user.nombre"
+              required 
+              name="nombre" 
+              type="text" 
+              matInput 
+              placeholder="Digite su nombre"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input 
+              [(ngModel)]="user.apellido" 
+              required
+              name="apellido" 
+              type="text" 
+              matInput 
+              placeholder="Digite su apellido"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input 
+              [(ngModel)]="user.email" 
+              required
+              name="email" 
+              type="email" 
+              matInput 
+              placeholder="Digite su email"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <span matTextPrefix>+51 &nbsp;</span>
+            <input 
+              [(ngModel)]="user.telefono" 
+              required
+              name="telefono"
+              type="text"
+              matInput 
+              placeholder="Digite su teléfono"              
+            >
+          </mat-form-field>
+
+          <div class="container text-center">
+            <button mat-raised-button color="primary"
+              style="margin-right: 10px; background-color: #00CED1;">Registrar</button>
+            <button type="reset" mat-raised-button color="accent" style="background-color: #76BFBE">Limpiar</button>
+          </div>
+        </form>
+        <br><br><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

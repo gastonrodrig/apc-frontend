@@ -1,0 +1,16 @@
+.imagen-container {
+    max-width: 100%; /* Ajusta el ancho máximo del contenedor según sea necesario */
+    margin-bottom: 10px; /* Espacio inferior para separar elementos */
+}
+
+/* Estilos para la imagen */
+.imagen-producto {
+    max-width: 100%; /* La imagen se ajustará al ancho máximo del contenedor */
+    height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+    border-radius: 5px; /* Bordes redondeados, puedes ajustar el valor según desees */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar la imagen */
+}
+
+.descripcion-field {
+    grid-column: span 2;
+}

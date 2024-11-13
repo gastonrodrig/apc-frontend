@@ -1,0 +1,62 @@
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #333 !important;
+  color: #fff;
+}
+
+::ng-deep .mat-step-header {
+  width: 20%;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #333 !important;
+  color: #fff;
+}
+
+::ng-deep .mat-primary.mat-step-header {
+  justify-items: center;
+  justify-content: center;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  border-top-width: 1.5px !important;
+  border-top-style: solid !important;
+  margin: 0 !important;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  background-color: rgb(245,245,245);
+}
+
+::ng-deep .mat-horizontal-content-container {
+  background-color: rgb(245,245,245);
+  overflow: hidden;
+  padding: 0 24px 24px 24px;
+}
+
+.underline-on-hover:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .mat-mdc-button .mat-mdc-button-touch-target {
+  background-color: #333;
+  border-radius: 8px;
+}
+
+::ng-deep .mat-mdc-button .mdc-button__label {
+  color: white;
+}
+
+.metodo-pago {
+  background-color: white;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.metodo-pago:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: #bababa;
+}

@@ -1,0 +1,154 @@
+<mat-card>
+  
+    <h1 class="container">Bienvenido al panel de administrador</h1>
+  
+
+  <div class='featured'>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Ganancia</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>s/ 5,000.00</span>
+        <span class='featuredMoneyRate'>-200.00 <i class="material-icons">arrow_drop_up</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Cantidad de Compras</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>20</span>
+        <span class='featuredMoneyRate'>-10 <i class="material-icons">arrow_drop_down</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Costos</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>s/ 3,000.00</span>
+        <span class='featuredMoneyRate'>+1,000.00 <i class="material-icons">arrow_drop_up</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+  </div>
+
+  <div class='featured'>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Ganancia</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>s/ 5,000.00</span>
+        <span class='featuredMoneyRate'>-200.00 <i class="material-icons">arrow_drop_down</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Cantidad de Compras</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>20</span>
+        <span class='featuredMoneyRate'>-10 <i class="material-icons">arrow_drop_down</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+    <div class='featuredItem'>
+      <span class='featuredTitle'>Costos</span>
+      <div class='featuredMoneyContainer'>
+        <span class='featuredMoney'>s/ 3,000.00</span>
+        <span class='featuredMoneyRate'>+1,000.00 <i class="material-icons">arrow_drop_up</i></span>
+      </div>
+      <span class='featuredSub'>en comparacion con el mes pasado</span>
+    </div>
+  </div>
+
+  <div class="contenedor-flex">
+    <div class="elemento-35">
+      <div class="calendar-container">
+        <h2>{{ getCurrentMonthAndYear() }}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Dom</th>
+              <th>Lun</th>
+              <th>Mar</th>
+              <th>Mié</th>
+              <th>Jue</th>
+              <th>Vie</th>
+              <th>Sáb</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let week of calendar">
+              <ng-container *ngFor="let day of week">
+                <td [ngClass]="{'current-day': isCurrentDay(day)}">
+                  {{ day !== 0 ? day : '' }}
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="elemento-65">
+      <div class='widgetLg'>
+        <h3 class='widgetLgTitle'>Listado de Pedidos</h3>
+        <table class='widgetLgTable'>
+          <tr class='widgetLgTr'>
+            <th class='widgetLgTh'>Cliente</th>
+            <th class='widgetLgTh'>Fecha</th>
+            <th class='widgetLgTh'>N° de Pedido</th>
+            <th class='widgetLgTh'>Estado</th>
+          </tr>
+          <tr class='widgetLgTr'>
+            <td class='widgetLgUser'>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/006/329/798/non_2x/client-symbol-member-profile-icon-vector.jpg"
+                alt="" class='widgetLgImg' />
+              <span class='widgetLgImg'>Gastón Rodriguez</span>
+            </td>
+            <td class='widgetLgDate'> 17/04/2024</td>
+            <td class='widgetLgAmount'>000005982</td>
+            <td class='widgetLdstatus'>
+              <span class='widgetLgImg'>Pendiente</span>
+            </td>
+          </tr>
+          <tr class='widgetLgTr'>
+            <td class='widgetLgUser'>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/006/329/798/non_2x/client-symbol-member-profile-icon-vector.jpg"
+                alt="" class='widgetLgImg' />
+              <span class='widgetLgImg'>Camila Blanco</span>
+            </td>
+            <td class='widgetLgDate'> 13/04/2024</td>
+            <td class='widgetLgAmount'>000005981</td>
+            <td class='widgetLdstatus'>
+              <span class='widgetLgImg'>Entregado</span>
+            </td>
+          </tr>
+          <tr class='widgetLgTr'>
+            <td class='widgetLgUser'>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/006/329/798/non_2x/client-symbol-member-profile-icon-vector.jpg"
+                alt="" class='widgetLgImg' />
+              <span class='widgetLgImg'>Carlos Montero</span>
+            </td>
+            <td class='widgetLgDate'> 09/04/2024</td>
+            <td class='widgetLgAmount'>000005980</td>
+            <td class='widgetLdstatus'>
+              <span class='widgetLgImg'>Entregado</span>
+            </td>
+          </tr>
+          <tr class='widgetLgTr'>
+            <td class='widgetLgUser'>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/006/329/798/non_2x/client-symbol-member-profile-icon-vector.jpg"
+                alt="" class='widgetLgImg' />
+              <span class='widgetLgImg'>Christian Saavedra</span>
+            </td>
+            <td class='widgetLgDate'> 01/04/2024</td>
+            <td class='widgetLgAmount'>000005979</td>
+            <td class='widgetLdstatus'>
+              <span class='widgetLgImg'>Entregado</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</mat-card>

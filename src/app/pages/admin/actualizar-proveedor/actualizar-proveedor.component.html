@@ -1,0 +1,40 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volver()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Actualizar Proveedor</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form *ngIf="proveedor" (submit)="actualizarDatos()">
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>RUC</mat-label>
+                    <input
+                        [(ngModel)]="proveedor.ruc"
+                        type="text"
+                        name="nombre"
+                        placeholder="Digite el RUC del proveedor"
+                        matInput
+                    >
+                </mat-form-field>
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Razón Social</mat-label>
+                    <input
+                        [(ngModel)]="proveedor.razonSocial"
+                        type="text"
+                        name="descripcion"
+                        placeholder="Digite la razón social del proveedor"
+                        matInput
+                    >
+                </mat-form-field>
+                <div class="row">
+                    <div class="containeractualizar text-center">
+                        <button mat-raised-button style="background-color: #00CED1; color: white;">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

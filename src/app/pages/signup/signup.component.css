@@ -1,0 +1,22 @@
+.bootstrap-wrapper {
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Adjust button spacing */
+  .container.text-center button {
+    margin-right: 10px;
+  }
+  

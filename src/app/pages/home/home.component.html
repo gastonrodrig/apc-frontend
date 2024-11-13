@@ -1,0 +1,84 @@
+<app-carrusel></app-carrusel>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 my-4">
+      <div class="d-flex justify-content-center">
+        <div class="circle">
+          <div class="mt-1" style="margin-left: 7.5px">
+            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M13 20V18C13 15.2386 10.7614 13 8 13C5.23858 13 3 15.2386 3 18V20H13ZM13 20H21V19C21 16.0545 18.7614 14 16 14C14.5867 14 13.3103 14.6255 12.4009 15.6311M11 7C11 8.65685 9.65685 10 8 10C6.34315 10 5 8.65685 5 7C5 5.34315 6.34315 4 8 4C9.65685 4 11 5.34315 11 7ZM18 9C18 10.1046 17.1046 11 16 11C14.8954 11 14 10.1046 14 9C14 7.89543 14.8954 7 16 7C17.1046 7 18 7.89543 18 9Z"
+                  stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3 class="font-subt">¿Quiénes somos?</h3>
+        <p>Somos una empresa privada, especializada en la distribución, comercialización e importación de equipamiento y productos médicos.</p>
+      </div>
+    </div>
+
+    <div class="col-lg-4 my-4">
+      <div class="d-flex justify-content-center">
+        <div class="circle">
+          <div class="mt-1" style="margin-left: 7.5px">
+            <img src="./../../../assets/product.svg" alt="Icono Local" style="width: 64px; height: 64px; fill: #ffffff;">
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3 class="font-subt">Productos</h3>
+        <p>Explora nuestro catálogo y cotiza con nosotros!</p>
+      </div>
+    </div>
+
+    <div class="col-lg-4 my-4">
+      <div class="d-flex justify-content-center">
+        <div class="circle">
+          <div class="mt-1" style="margin-left: 4.5px">
+            <img src="./../../../assets/service.svg" alt="Icono Local" style="width: 72px; height: 72px; fill: #ffffff;">
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3 class="font-subt">Servicio Técnico</h3>
+        <p>Contrata nuestro servicio técnico para tus equipos y mobiliario médico.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="container">
+  <h2 class="pt-3 text-center">ALGUNOS PRODUCTOS</h2>
+  <div class="d-flex justify-content-center">
+    <hr class="my-0 mb-3" style="opacity: 0.2; width: 90%;">
+  </div>
+  <div class="container px-5 py-24 mx-auto">
+    <div class="row">
+      <ng-container *ngFor="let producto of displayedProductos();">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="block relative rounded overflow-hidden">
+            <a [routerLink]="'/detalleproducto/' + producto.productoId">
+              <img class="hover:grow hover:shadow-lg w-100" [src]="producto.imagen" [alt]="producto.nombreProducto"
+              style="width: 250px; height: 300px;">
+              <div class="pt-3">
+                <p class="pt-1 text-gray-900">{{ producto.nombreProducto }}</p>
+                <p class="pt-1 text-gray-900">S/. {{ producto.precio }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

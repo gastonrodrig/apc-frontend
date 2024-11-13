@@ -1,0 +1,49 @@
+<mat-card style="padding: 15px;">
+    <div class="container" style="max-width: 100%;">
+        <h1>Catálogo</h1>
+        <button routerLink="/admin/addtocatalogo" mat-raised-button style="background-color: #00CED1; color: white;">Agregar producto a catálogo</button>
+    </div>
+    <div class="filter-container">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <div class="search-bar-container">
+            <input type="text" [(ngModel)]="searchTerm1" class="search-bar-input" placeholder="Buscar por producto" />
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+    <table class="table-container">
+        <tr>
+            <th>N°</th>
+            <th>Producto</th>
+            <th>SKU</th>
+            <th>Categoría</th>
+            <th>Precio Oferta</th>
+            <th>Stock</th>
+            <th>Operaciones</th>
+        </tr>
+        <tr *ngFor="let e of displayedProductos(); let i = index" mat-subheader>
+            <td>{{ (currentPage1 - 1) * rowsPerPage1 + i + 1 }}</td>
+            <td>{{ e.producto.nombreProducto }}</td>
+            <td>{{ e.producto.sku }}</td>
+            <td>{{ e.producto.categoria.nombre }}</td>
+            <td class="precio-oferta">{{ e.precioOferta !== null ? (e.precioOferta | currency:'S/. ':'symbol':'1.2-2') : '-' }}</td>
+            <td>{{ e.producto.stock }}</td>
+            <td>
+                <div style="padding-left: 5px; padding-right: 5px;" class="editar-icono">
+                    <i [routerLink]="'/admin/actualizarcatalogo/'+e.catalogoId" class="fas fa-edit"></i>
+                </div>
+                <div style="padding-left: 5px; padding-right: 5px;" class="eliminar-icono" (click)="eliminarProducto(e.catalogoId)">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="pagination">
+        <button (click)="prevPage1()" [disabled]="currentPage1 === 1">
+            <i class="fa fa-chevron-left"></i> Anterior
+        </button>
+        <button (click)="nextPage1()" [disabled]="currentPage1 === totalPages1">
+            Siguiente <i class="fa fa-chevron-right"></i>
+        </button>
+    </div>
+</mat-card>

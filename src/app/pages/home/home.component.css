@@ -1,0 +1,29 @@
+.font-subt {
+    color: #1e9cc2;
+    font-weight: 500;
+}
+
+.circle {
+    background-color: #1e9cc2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 7px;
+}
+
+.hover\:grow {
+    transition: all 0.3s;
+    transform: scale(1);
+    /* El tamaño inicial de la imagen */
+}
+
+.hover\:grow:hover {
+    transform: scale(1.02);
+    /* El tamaño al pasar el mouse por encima */
+}
