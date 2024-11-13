@@ -1,6 +1,6 @@
 # APC Emedicom Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
 First time running? `npm install`
 
 ## Development server
