@@ -45,6 +45,9 @@ import { ActualizarProveedorComponent } from './pages/admin/actualizar-proveedor
 import { AddClienteComponent } from './pages/admin/add-cliente/add-cliente.component';
 import { ViewClienteComponent } from './pages/admin/view-cliente/view-cliente.component';
 import { ActualizarClienteComponent } from './pages/admin/actualizar-cliente/actualizar-cliente.component';
+import { ViewAlmacenComponent } from './pages/admin/view-almacen/view-almacen.component';
+import { AddAlmacenComponent } from './pages/admin/add-almacen/add-almacen.component';
+import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/actualizar-almacen.component';
 
 
 
@@ -195,6 +198,18 @@ const routes: Routes = [
       {
         path: 'addcliente',
         component: AddClienteComponent
+      },
+      {
+        path: 'almacenes',
+        component: ViewAlmacenComponent
+      },
+      {
+        path: 'addalmacen',
+        component: AddAlmacenComponent
+      },
+      {
+        path: 'actualizaralmacen/:almacenId',
+        component: ActualizarAlmacenComponent
       },
     ]
   },

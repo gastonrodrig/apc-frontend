@@ -21,12 +21,12 @@
         </tr>
         <tr *ngFor="let i = index; let e of display()" mat-subheader>
             <td>{{ (currentPage1 - 1) * rowsPerPage1 + i + 1 }}</td>
-            <td>{{ e.ruc }}</td>
-            <td>{{ e.razonSocial }}</td>
+            <td>{{ e.descripcion }}</td>
+            <td>{{ e.direccion }}</td>
             <td>{{ e.dateCreated | date:'dd-MM-yyyy HH:mm:ss' }}</td>
             <td>
                 <div style="padding-left: 5px; padding-right: 5px;" class="editar-icono" >
-                    <i [routerLink]="'/admin/actualizaralmacen/'+e.proveedorId" class="fas fa-edit"></i>
+                    <i [routerLink]="'/admin/actualizaralmacen/'+e.almacenId" class="fas fa-edit"></i>
                 </div>
                 <div style="padding-left: 5px; padding-right: 5px;" class="eliminar-icono" (click)="eliminarAlmacen(e.almacenId)">
                     <i class="fas fa-trash-alt"></i>

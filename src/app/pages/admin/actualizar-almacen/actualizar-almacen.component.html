@@ -1,1 +1,40 @@
-<p>actualizar-almacen works!</p>
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volver()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Actualizar Almacén</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form *ngIf="almacen" (submit)="actualizarDatos()">
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Descripción</mat-label>
+                    <input
+                        [(ngModel)]="almacen.descripcion"
+                        type="text"
+                        name="nombre"
+                        placeholder="Digite la descripción del almacén"
+                        matInput
+                    >
+                </mat-form-field>
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input
+                        [(ngModel)]="almacen.direccion"
+                        type="text"
+                        name="descripcion"
+                        placeholder="Digite la dirección del almacén"
+                        matInput
+                    >
+                </mat-form-field>
+                <div class="row">
+                    <div class="containeractualizar text-center">
+                        <button mat-raised-button style="background-color: #00CED1; color: white;">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

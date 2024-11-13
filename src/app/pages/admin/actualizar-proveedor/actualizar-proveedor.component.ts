@@ -42,47 +42,53 @@ export class ActualizarProveedorComponent implements OnInit {
   normalizarEspacios(cadena: string): string {
     return cadena.replace(/\s+/g, ' ').trim();
   }
-  public actualizarDatos(){
-    // Normalizamos espacios en blanco en las cadenas y eliminar espacios al inicio y al final
+  public actualizarDatos() {
+    // Normalizamos espacios en blanco en las cadenas y eliminamos espacios al inicio y al final
     this.proveedor.ruc = this.normalizarEspacios(this.proveedor.ruc);
     this.proveedor.razonSocial = this.normalizarEspacios(this.proveedor.razonSocial);
-  
+    
     console.log(this.proveedor);
-  
+    
     if (!this.proveedor.ruc || !this.proveedor.razonSocial) {
-      this.snack.open('El ruc y la razón social son requeridos', '', {
+      this.snack.open('El RUC y la razón social son requeridos', '', {
         duration: 3000
       });
       return;
     }
-   
+    
     const nombreModificado = this.proveedor.razonSocial.trim().toLowerCase() !== this.proveedorOriginal.razonSocial.trim().toLowerCase();
     const rucModificado = this.proveedor.ruc.trim().toLowerCase() !== this.proveedorOriginal.ruc.trim().toLowerCase();
-  
+    
+    // Realizamos la verificación de unicidad solo si algún campo fue modificado
     if (nombreModificado || rucModificado) {
       this.proveedorService.listarProveedores().subscribe(
         (proveedores: any) => {
-          if (nombreModificado || rucModificado) {
-            const existeNombre = proveedores.some((proveedor: any) => proveedor.razonSocial.trim().toLowerCase() === this.proveedor.razonSocial.trim().toLowerCase() && proveedor._id !== this.proveedorId);
-            const existeRUC = proveedores.some((proveedor: any) => proveedor.ruc.trim().toLowerCase() === this.proveedor.ruc.trim().toLowerCase() && proveedor._id !== this.proveedorId);
-            if (existeNombre||existeRUC) {
-              this.snack.open('Ya existe un proveedor con esos datos', '', {
-                duration: 3000
-              });
-              return;
-            }
+          const existeNombre = nombreModificado && proveedores.some((proveedor: any) => 
+            proveedor.razonSocial.trim().toLowerCase() === this.proveedor.razonSocial.trim().toLowerCase() && proveedor._id !== this.proveedorId
+          );
+          
+          const existeRUC = rucModificado && proveedores.some((proveedor: any) => 
+            proveedor.ruc.trim().toLowerCase() === this.proveedor.ruc.trim().toLowerCase() && proveedor._id !== this.proveedorId
+          );
+          
+          if (existeNombre || existeRUC) {
+            this.snack.open('Ya existe un proveedor con esos datos', '', {
+              duration: 3000
+            });
+            return;
           }
-  
+          
+          // Actualizamos el proveedor si no se encontraron duplicados
           this.proveedorService.actualizarProveedor(this.proveedor).subscribe(
             (data) => {
-              Swal.fire('Proveedor actualizado', 'El Proveedor ha sido actualizado con éxito', 'success').then(
-                (e)=> {
+              Swal.fire('Proveedor actualizado', 'El proveedor ha sido actualizado con éxito', 'success').then(
+                (e) => {
                   this.router.navigate(['/admin/proveedores']);
                 }
               );
             },
-            (error) =>{
-              Swal.fire('Error en el sistema', 'No se ha podido actualizar la información del Proveedor', 'error');
+            (error) => {
+              Swal.fire('Error en el sistema', 'No se ha podido actualizar la información del proveedor', 'error');
               console.log(error);
             }
           );
@@ -95,20 +101,20 @@ export class ActualizarProveedorComponent implements OnInit {
         }
       );
     } else {
-      // Si no se han modificado el nombre, no se realiza la validación
+      // Si no hay cambios, igual intentamos la actualización directamente
       this.proveedorService.actualizarProveedor(this.proveedor).subscribe(
         (data) => {
-          Swal.fire('Proveedor actualizado', 'El Proveedor ha sido actualizado con éxito', 'success').then(
-            (e)=> {
+          Swal.fire('Proveedor actualizado', 'El proveedor ha sido actualizado con éxito', 'success').then(
+            (e) => {
               this.router.navigate(['/admin/proveedores']);
             }
           );
         },
-        (error) =>{
-          Swal.fire('Error en el sistema', 'No se ha podido actualizar la información del Proveedor', 'error');
+        (error) => {
+          Swal.fire('Error en el sistema', 'No se ha podido actualizar la información del proveedor', 'error');
           console.log(error);
         }
       );
     }
-  }
+  }  
 }
