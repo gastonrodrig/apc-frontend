@@ -48,6 +48,9 @@ import { ActualizarClienteComponent } from './pages/admin/actualizar-cliente/act
 import { ViewAlmacenComponent } from './pages/admin/view-almacen/view-almacen.component';
 import { AddAlmacenComponent } from './pages/admin/add-almacen/add-almacen.component';
 import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/actualizar-almacen.component';
+import { AddServicioComponent } from './pages/admin/add-servicio/add-servicio.component';
+import { ViewServicioComponent } from './pages/admin/view-servicio/view-servicio.component';
+import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/actualizar-servicio.component';
 
 
 
@@ -210,6 +213,18 @@ const routes: Routes = [
       {
         path: 'actualizaralmacen/:almacenId',
         component: ActualizarAlmacenComponent
+      },
+      {
+        path: 'servicios',
+        component: ViewServicioComponent
+      },
+      {
+        path: 'addservicio',
+        component: AddServicioComponent
+      },
+      {
+        path: 'actualizarservicio/:servicioId',
+        component: ActualizarServicioComponent
       },
     ]
   },

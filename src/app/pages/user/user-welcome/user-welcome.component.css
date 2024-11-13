@@ -20,7 +20,7 @@
 
 .datos {
     width: 70%;
-    border: 2px solid #ddd;
+    border: 2px solid #dddddd;
     height: 300px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -160,7 +160,7 @@ td {
 }
 
 .current-day {
-    background-color: #F9E1DF;
+    background-color: #dff4f9;
 }
 
 .card {

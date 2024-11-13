@@ -1,0 +1,78 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+      <a (click)="volver()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+      <h1>Agregar nuevo servicio</h1>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form (ngSubmit)="guardarInformacion()" novalidate>
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Nombre del Servicio</mat-label>
+            <input
+              [(ngModel)]="servicioData.nombre"
+              type="text"
+              name="nombre"
+              placeholder="Digite el nombre del servicio"
+              matInput
+            >
+          </mat-form-field>
+  
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Descripción</mat-label>
+            <textarea
+              [(ngModel)]="servicioData.descripcion"
+              name="descripcion"
+              placeholder="Digite la descripción del servicio"
+              matInput
+            ></textarea>
+          </mat-form-field>
+  
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Costo</mat-label>
+            <input
+              [(ngModel)]="servicioData.costo"
+              type="number"
+              name="costo"
+              placeholder="Digite el costo del servicio"
+              matInput
+            >
+          </mat-form-field>
+  
+          <!-- MatDatepicker for Fecha de Realización -->
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Fecha de Realización</mat-label>
+            <input
+              [(ngModel)]="servicioData.fechaRealizado"
+              [matDatepicker]="picker"
+              name="fechaRealizado"
+              matInput
+              readonly
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field class="w100" appearance="fill">
+            <mat-label>Garantía (en meses)</mat-label>
+            <input
+              [(ngModel)]="servicioData.garantia"
+              type="number"
+              name="garantia"
+              placeholder="Ingrese la duración de la garantía en meses"
+              matInput
+            >
+          </mat-form-field>
+  
+          <div class="row">
+            <div class="container text-center">
+              <button mat-raised-button style="background-color: #00CED1; color: white;">Agregar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+  

@@ -85,6 +85,9 @@ import { ActualizarClienteComponent } from './pages/admin/actualizar-cliente/act
 import { ViewAlmacenComponent } from './pages/admin/view-almacen/view-almacen.component';
 import { AddAlmacenComponent } from './pages/admin/add-almacen/add-almacen.component';
 import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/actualizar-almacen.component';
+import { ViewServicioComponent } from './pages/admin/view-servicio/view-servicio.component';
+import { AddServicioComponent } from './pages/admin/add-servicio/add-servicio.component';
+import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/actualizar-servicio.component';
 
 
 @NgModule({ declarations: [
@@ -143,7 +146,10 @@ import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/act
         ActualizarClienteComponent,
         ViewAlmacenComponent,
         AddAlmacenComponent,
-        ActualizarAlmacenComponent
+        ActualizarAlmacenComponent,
+        ViewServicioComponent,
+        AddServicioComponent,
+        ActualizarServicioComponent
     ],
     exports: [MatToolbarModule, MatButtonModule, MatIconModule, MatExpansionModule],
     bootstrap: [AppComponent], imports: [BrowserModule,

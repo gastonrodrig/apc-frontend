@@ -1,8 +1,11 @@
-<mat-card>
-    <mat-action-list class="sidebar">
-      <div style="padding-left: 10px; padding-top: 0.5px;" class="sidebarTitle">
-        Dashboard
-      </div>
+<div class="sidebar-container" [ngClass]="{'collapsed': !isSidebarVisible, 'mobile': isMobileView}">
+  <button *ngIf="isMobileView" class="toggle-button" (click)="toggleSidebar()">
+    <mat-icon>{{ isSidebarVisible ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+  </button>
+
+  <mat-card>
+    <mat-action-list class="sidebar" *ngIf="isSidebarVisible || !isMobileView">
+      <div class="sidebarTitle">Dashboard</div>
       <button routerLink="/admin" mat-list-item class="sidebarlistItem">
         <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>home</mat-icon> Inicio
       </button>
@@ -60,4 +63,6 @@
       <button mat-list-item routerLink="/admin/notas" class="sidebarlistItem">
         <mat-icon style="margin-left: 20px;" class="sidebarIcon" mat-list-icon>note</mat-icon> Notas de Crédito
       </button>
-
+    </mat-action-list>
+  </mat-card>
+</div>

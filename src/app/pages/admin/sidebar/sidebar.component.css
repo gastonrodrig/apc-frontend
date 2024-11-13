@@ -36,3 +36,12 @@
   .full-width{
     width: 100%;
   }
+
+  .toggle-button {
+    outline: none; /* Quita el borde de enfoque predeterminado */
+    border: none;  /* Quita cualquier borde aplicado */
+    box-shadow: none; /* Quita cualquier sombra que pueda crear un efecto de cuadro */
+  }
+  .toggle-button:focus {
+    outline: none;
+  }

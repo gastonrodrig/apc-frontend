@@ -1,0 +1,84 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volver()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Actualizar Servicio</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form *ngIf="servicio" (submit)="actualizarDatos()">
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Nombre del Servicio</mat-label>
+                    <input
+                        [(ngModel)]="servicio.nombre"
+                        type="text"
+                        name="nombre"
+                        placeholder="Digite el nombre del servicio"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Descripción</mat-label>
+                    <textarea
+                        [(ngModel)]="servicio.descripcion"
+                        name="descripcion"
+                        placeholder="Digite la descripción del servicio"
+                        matInput
+                    ></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Costo</mat-label>
+                    <input
+                        [(ngModel)]="servicio.costo"
+                        type="number"
+                        name="costo"
+                        placeholder="Digite el costo del servicio"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Fecha Realizado</mat-label>
+                    <input
+                        [(ngModel)]="servicio.fechaRealizado"
+                        [matDatepicker]="fechaRealizadoPicker"
+                        name="fechaRealizado"
+                        matInput
+                        readonly
+                    >
+                    <mat-datepicker-toggle matSuffix [for]="fechaRealizadoPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #fechaRealizadoPicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Garantía (meses)</mat-label>
+                    <input
+                        [(ngModel)]="servicio.garantia"
+                        type="number"
+                        name="garantia"
+                        placeholder="Meses de garantía"
+                        matInput
+                    >
+                </mat-form-field>
+
+                <mat-form-field class="w50izq" appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="servicio.status" name="status">
+                        <mat-option [value]="1">Activo</mat-option>
+                        <mat-option [value]="0">Inactivo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="row">
+                    <div class="containeractualizar text-center">
+                        <button mat-raised-button style="background-color: #00CED1; color: white;">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

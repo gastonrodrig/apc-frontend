@@ -16,13 +16,9 @@
     display: flex;
     align-items: center;
     border-radius: 10px;
-    
-    
-    
-    
   }
   .sidebarlistItem.active, .sidebarlistItem:hover{
-    background-color: #ffedeb;
+    background-color: #ebf9ff;
   }
   .sidebarIcon{
     padding-top: 6px;
