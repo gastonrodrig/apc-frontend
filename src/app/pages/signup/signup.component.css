@@ -1,22 +1,7 @@
-.bootstrap-wrapper {
-    width: 100%;
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
   }
-  
-  .container {
-    max-width: 960px;
-    margin: auto;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  /* Adjust button spacing */
-  .container.text-center button {
-    margin-right: 10px;
-  }
-  

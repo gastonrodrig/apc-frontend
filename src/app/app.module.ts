@@ -53,7 +53,6 @@ import { ActualizarCategoriaComponent } from './pages/admin/actualizar-categoria
 import { ViewUsuarioComponent } from './pages/admin/view-usuario/view-usuario.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetalleProductoCatalogoComponent } from './pages/catalogo/detalle-producto/detalle-producto.component';
-import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { ViewCatalogoComponent } from './pages/admin/view-catalogo/view-catalogo.component';
 import { ViewInventarioComponent } from './pages/admin/view-inventario/view-inventario.component';
@@ -88,6 +87,8 @@ import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/act
 import { ViewServicioComponent } from './pages/admin/view-servicio/view-servicio.component';
 import { AddServicioComponent } from './pages/admin/add-servicio/add-servicio.component';
 import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/actualizar-servicio.component';
+import { MantenimientoComponent } from './pages/mantenimiento/mantenimiento.component';
+import { AtenderPedidoComponent } from './pages/admin/atender-pedido/atender-pedido.component';
 
 
 @NgModule({ declarations: [
@@ -116,7 +117,6 @@ import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/a
         FooterComponent,
         DetalleProductoCatalogoComponent,
         ListaProductosComponent,
-        NosotrosComponent,
         CarritoComponent,
         ViewCatalogoComponent,
         ViewInventarioComponent,
@@ -149,7 +149,9 @@ import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/a
         ActualizarAlmacenComponent,
         ViewServicioComponent,
         AddServicioComponent,
-        ActualizarServicioComponent
+        ActualizarServicioComponent,
+        MantenimientoComponent,
+        AtenderPedidoComponent
     ],
     exports: [MatToolbarModule, MatButtonModule, MatIconModule, MatExpansionModule],
     bootstrap: [AppComponent], imports: [BrowserModule,

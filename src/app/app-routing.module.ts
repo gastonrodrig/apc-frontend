@@ -20,7 +20,6 @@ import { AddCategoriaComponent } from './pages/admin/add-categoria/add-categoria
 import { ActualizarCategoriaComponent } from './pages/admin/actualizar-categoria/actualizar-categoria.component';
 import { ViewUsuarioComponent } from './pages/admin/view-usuario/view-usuario.component';
 import { DetalleProductoCatalogoComponent } from './pages/catalogo/detalle-producto/detalle-producto.component';
-import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { ViewCatalogoComponent } from './pages/admin/view-catalogo/view-catalogo.component';
 import { ViewInventarioComponent } from './pages/admin/view-inventario/view-inventario.component';
@@ -51,6 +50,8 @@ import { ActualizarAlmacenComponent } from './pages/admin/actualizar-almacen/act
 import { AddServicioComponent } from './pages/admin/add-servicio/add-servicio.component';
 import { ViewServicioComponent } from './pages/admin/view-servicio/view-servicio.component';
 import { ActualizarServicioComponent } from './pages/admin/actualizar-servicio/actualizar-servicio.component';
+import { MantenimientoComponent } from './pages/mantenimiento/mantenimiento.component';
+import { AtenderPedidoComponent } from './pages/admin/atender-pedido/atender-pedido.component';
 
 
 
@@ -71,6 +72,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'servicio-tecnico',
+    component: MantenimientoComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'catalogo',
     component: ListaProductosComponent,
     pathMatch: 'full'
@@ -78,11 +84,6 @@ const routes: Routes = [
   {
     path: 'detalleproducto/:productoId', 
     component: DetalleProductoCatalogoComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'nosotros', 
-    component: NosotrosComponent,
     pathMatch: 'full'
   },
   {
@@ -226,6 +227,10 @@ const routes: Routes = [
         path: 'actualizarservicio/:servicioId',
         component: ActualizarServicioComponent
       },
+      {
+        path: 'atenderpedido/:orderId',
+        component: AtenderPedidoComponent
+      },
     ]
   },
   {//user/profile
@@ -266,7 +271,7 @@ const routes: Routes = [
         component: UserRequestDetailsComponent
       },
       {
-        path: 'pagar-solicitud/:solicitudId',
+        path: 'pagar-solicitud/:orderId',
         component: UserPayRequestComponent
       }
     ]

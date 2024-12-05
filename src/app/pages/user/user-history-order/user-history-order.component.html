@@ -3,8 +3,7 @@
         <h1>Historial de Pedidos</h1>
     </div>
     <div class="filter-container">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </div>
     <table class="table-container">
         <tr>
@@ -16,16 +15,19 @@
             <th>Estado</th>
             <th>Operaciones</th>
         </tr>
-        <tr *ngFor="let i = index; let e of displayedOrders()" mat-subheader>
+        <tr *ngFor="let e of displayedOrders(); let i = index" mat-subheader>
             <td>{{ (currentPage1 - 1) * rowsPerPage1 + i + 1 }}</td>
             <td>{{ e.orderId }}</td>
             <td>{{ e.streetAddress }}</td>
             <td>{{ e.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</td>
-            <td>{{ e.totalPrice | currency:'S/. ':'symbol':'1.2-2' }}</td>
+            <td>{{ e.preciocli ? (e.preciocli | currency:'S/. ':'symbol':'1.2-2') : '-' }}</td>
             <td>{{ e.status }}</td>
             <td>
                 <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono">
                     <i [routerLink]="'/user/detalle-pedido/'+e.orderId" class="fas fa-info-circle"></i>
+                </div>
+                <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono" *ngIf="e.status === 'Aceptado'">
+                    <i [routerLink]="'/user/pagar-solicitud/'+e.orderId" class="fas fa-credit-card"></i>
                 </div>
             </td>
         </tr>

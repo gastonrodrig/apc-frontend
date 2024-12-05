@@ -1,88 +1,140 @@
-<div class="bootstrap-wrapper">
-  <div class="container">
+<section class="vh-100">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <!-- Columna izquierda con el formulario -->
+      <div class="col-sm-6 text-black d-flex justify-content-center align-items-center">
+        <div class="text-center" style="width: 23rem;">
+          <!-- Logo personalizado con enlace -->
+          <a href="/" class="d-block mb-4">
+            <img 
+              src="./../../../assets/logo.png" 
+              alt="Logo" 
+              class="img-fluid" 
+              style="width: 150px;"
+            />
+          </a>
 
-        <h1 class="text-center mt-5">Crea Tu Cuenta</h1>
-        <hr class="my-0 mb-4" style="opacity: 0.2;">
-        <form (ngSubmit)="formSubmit()">
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Nombre de usuario</mat-label>
-            <input required [(ngModel)]="user.username" name="username" matInput
-              placeholder="Digite su nombre de usuario">
-          </mat-form-field>
-
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Contraseña</mat-label>
-            <input 
-              [(ngModel)]="user.password"
-              required 
-              name="password" 
-              type="password" 
-              matInput
-              placeholder="Digite su contraseña"
+          <!-- Formulario -->
+          <form (ngSubmit)="formSubmit()">
+            <!-- Título ajustado -->
+            <h3 
+              class="fw-bold mb-4" 
+              style="letter-spacing: 1px; font-size: 1.25rem;"
             >
-          </mat-form-field>
+              Regístrate
+            </h3>
 
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Nombre</mat-label>
-            <input 
-              [(ngModel)]="user.nombre"
-              required 
-              name="nombre" 
-              type="text" 
-              matInput 
-              placeholder="Digite su nombre"
-            >
-          </mat-form-field>
+            <!-- Campo de nombre de usuario -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="username">Nombre de usuario</label>
+              <input 
+                type="text" 
+                id="username" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.username" 
+                name="username" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
 
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Apellido</mat-label>
-            <input 
-              [(ngModel)]="user.apellido" 
-              required
-              name="apellido" 
-              type="text" 
-              matInput 
-              placeholder="Digite su apellido"
-            >
-          </mat-form-field>
+            <!-- Campo de contraseña -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="password">Contraseña</label>
+              <input 
+                type="password" 
+                id="password" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.password" 
+                name="password" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
 
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input 
-              [(ngModel)]="user.email" 
-              required
-              name="email" 
-              type="email" 
-              matInput 
-              placeholder="Digite su email"
-            >
-          </mat-form-field>
+            <!-- Campo de nombre -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="nombre">Nombre</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.nombre" 
+                name="nombre" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
 
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Teléfono</mat-label>
-            <span matTextPrefix>+51 &nbsp;</span>
-            <input 
-              [(ngModel)]="user.telefono" 
-              required
-              name="telefono"
-              type="text"
-              matInput 
-              placeholder="Digite su teléfono"              
-            >
-          </mat-form-field>
+            <!-- Campo de apellido -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="apellido">Apellido</label>
+              <input 
+                type="text" 
+                id="apellido" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.apellido" 
+                name="apellido" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
 
-          <div class="container text-center">
-            <button mat-raised-button color="primary"
-              style="margin-right: 10px; background-color: #00CED1;">Registrar</button>
-            <button type="reset" mat-raised-button color="accent" style="background-color: #76BFBE">Limpiar</button>
-          </div>
-        </form>
-        <br><br><br>
+            <!-- Campo de email -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.email" 
+                name="email" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
+
+            <!-- Campo de teléfono -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="telefono">Teléfono</label>
+              <input 
+                type="text" 
+                id="telefono" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="user.telefono" 
+                name="telefono" 
+                required 
+                style="font-size: 1rem;"
+              />
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="pt-3 mb-4">
+              <button 
+                class="btn btn-info btn-lg btn-block" 
+                type="submit"
+                style="font-size: 1rem; font-weight: normal; background-color: #00CED1;"
+              >
+                Registrar
+              </button>
+            </div>
+            <p class="pt-3"> <!-- Aumenté el padding-top aquí también -->
+              ¿Ya tienes cuenta?
+              <a routerLinkActive="active" routerLink="/login" class="link-info" style="color: #00CED1;">Inicia sesión aquí</a>
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Columna derecha con la imagen -->
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img 
+          src="https://cdn.prod.website-files.com/6597e725367f02d030e1edd5/6597e725367f02d030e1f00d_pexels-cottonbro-studio-7578812.webp" 
+          alt="Register image" 
+          class="w-100 vh-100" 
+          style="object-fit: cover; object-position: left;"
+        />
       </div>
     </div>
   </div>
-</div>
-
-<app-footer></app-footer>
+</section>

@@ -1,148 +1,115 @@
-<div class="container">
-    <ng-container *ngIf="myList.length === 0">
+<div class="page-container">
+    <div class="container content">
+      <ng-container *ngIf="myList.length === 0">
         <div class="m-5">
-            <div class="bg-white rounded shadow-sm p-4">
-                <div class="row p-4">
-                    <div class="col-lg-3 d-flex justify-content-center">
-                        <div class="circle">
-                            <i class="mt-4 fa-solid fa-cart-shopping fs-1" style="margin-left: 18px"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <h2 class="fw-normal">Tu Carro está vacío</h2>
-                        <h4 class="fw-light">¡Aprovecha! Tenemos miles de productos en oferta y oportunidades únicas.
-                        </h4>
-                    </div>
+          <div class="bg-white rounded shadow-sm p-4">
+            <div class="row p-4">
+              <div class="col-lg-3 d-flex justify-content-center">
+                <div class="circle">
+                  <i class="mt-4 fa-solid fa-cart-shopping fs-1" style="margin-left: 18px"></i>
                 </div>
-                <div class="d-flex justify-content-center mb-3">
-                    <button routerLink="/catalogo" class="fw-normal btn btn-dark rounded btn-block p-3">
-                        Ver Catálogo
-                    </button>
-                </div>
+              </div>
+              <div class="col-lg-9">
+                <h2 class="fw-normal">Tu Carro está vacío</h2>
+                <h4 class="fw-light">Por favor, agrega algún producto para continuar.</h4>
+              </div>
             </div>
+            <div class="d-flex justify-content-center mb-3">
+              <button routerLink="/catalogo" class="fw-normal btn btn-dark rounded btn-block p-3">
+                Ver Catálogo
+              </button>
+            </div>
+          </div>
         </div>
-    </ng-container>
-    <ng-container *ngIf="myList.length !== 0">
+      </ng-container>
+      <ng-container *ngIf="myList.length !== 0">
         <div class="row my-4">
-            <div class="col-lg-9">
-                <h2 class="fw-normal">Carro (
-                    <ng-container *ngIf="cantidadProductos() === 1">
-                        {{ cantidadProductos() }} producto
-                    </ng-container>
-                    <ng-container *ngIf="cantidadProductos() !== 1">
-                        {{ cantidadProductos() }} productos
-                    </ng-container> )
-                </h2>
-                <ng-container *ngFor="let product of myList">
-                    <div class="bg-white p-3 my-3 rounded shadow-sm">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-center">
-                                <img class="mx-4" [src]="product.imagen" [alt]="product.nombreProducto"
-                                    style="width: 125px; height: 150px;">
-                            </div>
-                            <div class="col-lg-2 col-md-8 col-sm-8 d-flex mt-3 flex-column justify-content-center">
-                                <h4>{{ product.nombreProducto }}</h4>
-                                <h5>Tipo: <strong>{{ product.categoria.nombre }}</strong></h5>
-                            </div>
-                            <div
-                                class="col-lg-4 col-md-9 col-sm-8 col-6 d-flex align-items-center justify-content-start">
-                                <h3 class="mx-4">S/. {{ product.precio }}</h3>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4 col-6 row align-items-center justify-content-end">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex justify-content-end">
-                                            <button class="btn btn-sm" (click)="deleteProduct(product.productoId)">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex align-items-center justify-content-end">
-                                            <button class="btn btn-outline-secondary btn-sm btn-dark btn-sm"
-                                                (click)="updateUnits('minus', product.productoId)">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                            <h3 class="m-3">{{ product.cantidad }}</h3>
-                                            <button class="btn btn-outline-secondary btn-sm btn-dark btn-sm"
-                                                (click)="updateUnits('add', product.productoId)"
-                                                [disabled]="product.cantidad === this.product.stock">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <ng-container *ngIf="product.stock === 1">
-                                            <h5 class="fw-light d-flex align-items-center justify-content-end text-center">
-                                                Máximo 1 unidad
-                                            </h5>
-                                        </ng-container>
-                                        <ng-container *ngIf="product.stock !== 1">
-                                            <h5 class="fw-light d-flex align-items-center justify-content-end text-center">
-                                                Máximo {{ product.stock }} unidades
-                                            </h5>
-                                        </ng-container>
-                                    </div>
-                                </div>
-                            </div>
+          <div class="col-lg-9">
+            <h2 class="fw-normal">Carrito de Cotización (
+              <ng-container *ngIf="cantidadProductos() === 1">
+                {{ cantidadProductos() }} producto
+              </ng-container>
+              <ng-container *ngIf="cantidadProductos() !== 1">
+                {{ cantidadProductos() }} productos
+              </ng-container> )
+            </h2>
+            <ng-container *ngFor="let product of myList">
+              <div class="bg-white p-3 my-3 rounded shadow-sm">
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-center">
+                    <img class="mx-4" [src]="product.imagen" [alt]="product.nombreProducto"
+                      style="width: 125px; height: 150px;">
+                  </div>
+                  <div class="col-lg-2 col-md-8 col-sm-8 d-flex mt-3 flex-column justify-content-center">
+                    <h4>{{ product.nombreProducto }}</h4>
+                    <h5>Tipo: <strong>{{ product.categoria.nombre }}</strong></h5>
+                  </div>
+                  <div
+                    class="col-lg-4 col-md-9 col-sm-8 col-6 d-flex align-items-center justify-content-start">
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-6 row align-items-center justify-content-end">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-flex justify-content-end">
+                          <button class="btn btn-sm" (click)="deleteProduct(product.productoId)">
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
                         </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="d-flex align-items-center justify-content-end">
+                          <button class="btn btn-outline-secondary btn-sm btn-dark btn-sm"
+                            (click)="updateUnits('minus', product.productoId)">
+                            <i class="fa-solid fa-minus"></i>
+                          </button>
+                          <h3 class="m-3">{{ product.cantidad }}</h3>
+                          <button class="btn btn-outline-secondary btn-sm btn-dark btn-sm"
+                            (click)="updateUnits('add', product.productoId)"
+                            [disabled]="product.cantidad === this.producto.stock">
+                            <i class="fa-solid fa-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <ng-container *ngIf="product.stock === 1">
+                          <h5 class="fw-light d-flex align-items-center justify-content-end text-center">
+                            Máximo 1 unidad
+                          </h5>
+                        </ng-container>
+                        <ng-container *ngIf="product.stock !== 1">
+                          <h5 class="fw-light d-flex align-items-center justify-content-end text-center">
+                            Máximo {{ product.stock }} unidades
+                          </h5>
+                        </ng-container>
+                      </div>
                     </div>
-                </ng-container>
-            </div>
-            <ng-container *ngIf="myList.length !== 0">
-                <div class="col-lg-3">
-                    <h2 class="fw-normal">Resumen de la orden</h2>
-                    <div class="bg-white p-3 my-3 rounded shadow-sm">
-                        <div class="row">
-                            <div class="col-9">
-                                <h5 class="fw-bold">Costo de envío estimado</h5>
-                            </div>
-                            <div class="col-3">
-                                <h5 class="d-flex justify-content-end">S/. -----</h5>
-                            </div>
-                        </div>
-                        <hr class="w-100 mt-2" style="border-color: rgb(188, 188, 188); border-width: 1px;">
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="fw-bold">Subtotal: </p>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="d-flex fw-bold justify-content-end">S/. {{ subtotal() }}</h5>
-                            </div>
-                        </div>
-                        <hr class="w-100 mt-2" style="border-color: rgb(188, 188, 188); border-width: 1px;">
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="fw-bold">IGV: </p>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="d-flex fw-bold justify-content-end">S/. {{ igv() }}</h5>
-                            </div>
-                        </div>
-                        <hr class="w-100 mt-2" style="border-color: rgb(0, 0, 0); border-width: 1px;">
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="fw-bold">Total: </p>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="d-flex fw-bold justify-content-end">S/. {{ totalCart() }}</h5>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <ng-container *ngIf="user">
-                                <button routerLink="/envio" class="fw-normal btn btn-dark rounded btn-block px-4">
-                                    Continuar Compra
-                                </button>
-                            </ng-container>
-                            <ng-container *ngIf="!user">
-                                <p style="font-size: 14px;" class="mt-3 fw-normal">Inicie Sesión para continuar</p>
-                            </ng-container>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </ng-container>
+          </div>
+          <ng-container *ngIf="myList.length !== 0">
+            <div class="col-lg-3">
+              <h2 class="fw-normal">ㅤ</h2>
+              <div class="bg-white p-3 my-3 rounded shadow-sm">
+                <div class="row">
+                </div>
+                <div class="d-flex justify-content-center">
+                  <ng-container *ngIf="user">
+                    <button routerLink="/envio" class="fw-normal btn btn-dark rounded btn-block px-4">
+                      Continuar
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="!user">
+                    <p style="font-size: 14px;" class="mt-3 fw-normal">Inicie Sesión para continuar</p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </ng-container>
         </div>
-    </ng-container>
-</div>
-
-<app-footer></app-footer>
+      </ng-container>
+    </div>
+    <app-footer></app-footer>
+  </div>
+  

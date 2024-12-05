@@ -27,14 +27,14 @@ export class PdfService {
     // Add title and company information
     const pageWidth = doc.internal.pageSize.getWidth();
 
-    doc.addImage('../../../assets/logoelsaval.png', 'PNG', 10, 10, 30, 30); // Use the uploaded image path
+    doc.addImage('../../../assets/logo.png', 'PNG', 10, 10, 50, 20); // Use the uploaded image path with rectangular dimensions
     doc.setFontSize(18);
-    doc.text(`Comprobante de Pago Nº001-${orderData[0].order.orderId}`, pageWidth / 2, 15, { align: 'center' });
+    doc.text(`Factura Nº001-${orderData[0].order.orderId}`, pageWidth / 2, 15, { align: 'center' });
     doc.setFontSize(12);
-    doc.text('Elsa Val - RUC: 20522112002', pageWidth / 2, 25, { align: 'center' });
-    doc.text('Av. Benavides 5053 - Lima - Santiago de Surco', pageWidth / 2, 30, { align: 'center' });
-    doc.text('Teléfono: (01) 557-7015', pageWidth / 2, 35, { align: 'center' });
-    doc.text('Correo: ventas@elsaval.com', pageWidth / 2, 40, { align: 'center' });
+    doc.text('APC Emedicom - RUC: 20517224694', pageWidth / 2, 25, { align: 'center' });
+    doc.text('Jr. Enrique Pallardelli 554 - Lima - Comas', pageWidth / 2, 30, { align: 'center' });
+    doc.text('Teléfono: (01) 557-6015', pageWidth / 2, 35, { align: 'center' });
+    doc.text('Correo: ventas@apcemedicom.com', pageWidth / 2, 40, { align: 'center' });
 
     // Add client details
     let y = 50;
@@ -81,37 +81,37 @@ export class PdfService {
       styles: {
         fillColor: [255, 255, 255], // White background
         textColor: [0, 0, 0], // Black text color
-        lineColor: [140, 89, 98], // RGB for border color
+        lineColor: [0, 206, 209], // RGB for #00CED1
       },
       headStyles: {
-        fillColor: [140, 89, 98], // RGB for #8C5962
+        fillColor: [0, 206, 209], // RGB for #8C5962
         textColor: [255, 255, 255] // White text color
       }
     });
 
     y = (doc as any).lastAutoTable.finalY + 10;
 
-    const totalAmountInWords = NumerosALetras(totalPrice.toFixed(2));
-    doc.setFontSize(12);
-    doc.text(`SON: ${totalAmountInWords}`, 10, y);
-    y += 10;
-    doc.setFontSize(14);
-    doc.text(`Datos del Pago:`, 10, y);
-    y += 10;
-    doc.setFontSize(12);
-    doc.text(`Tipo de Operación: ${orderData[0].order.tipoOperacion}`, 10, y);
-    y += 10;
+    //const totalAmountInWords = NumerosALetras(totalPrice.toFixed(2));
+    //doc.setFontSize(12);
+    //doc.text(`SON: ${totalAmountInWords}`, 10, y);
+    //y += 10;
+    //doc.setFontSize(14);
+    //doc.text(`Datos del Pago:`, 10, y);
+    //y += 10;
+    //doc.setFontSize(12);
+    //doc.text(`Tipo de Operación: ${orderData[0].order.tipoOperacion}`, 10, y);
+    //y += 10;
     // Format date here using Angular's formatDate function
-    const fechaOperacionFormatted = formatDate(orderData[0].order.fechaOperacion, 'dd-MM-yyyy HH:mm:ss', 'en-US');
-    doc.text(`Fecha de Operación: ${fechaOperacionFormatted}`, 10, y);
-    y += 10;
-    doc.text(`Número de Operación: ${orderData[0].order.noperacion}`, 10, y);
-    y += 10;
+    //const fechaOperacionFormatted = formatDate(orderData[0].order.fechaOperacion, 'dd-MM-yyyy HH:mm:ss', 'en-US');
+    //doc.text(`Fecha de Operación: ${fechaOperacionFormatted}`, 10, y);
+    //y += 10;
+    //doc.text(`Número de Operación: ${orderData[0].order.noperacion}`, 10, y);
+    //y += 10;
 
     // Add footer
     doc.setFontSize(10);
     doc.text('Gracias por su compra!', pageWidth / 2, 285, { align: 'center' });
-    doc.text('Alguna consulta con tu compra? Envía un correo a consultas@elsaval.com', pageWidth / 2, 290, { align: 'center' });
+    doc.text('Alguna consulta con tu compra? Envía un correo a consultas@apcemedicom.com', pageWidth / 2, 290, { align: 'center' });
 
     // Save the PDF
     doc.save('factura.pdf');

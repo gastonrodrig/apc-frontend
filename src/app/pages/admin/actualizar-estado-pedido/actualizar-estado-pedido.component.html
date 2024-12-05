@@ -3,7 +3,7 @@
         <a (click)="volverAProductos()" class="link-text"> < Volver</a>
     </div>
     <div class="container">
-        <h1>Agregar cantidad de Productos</h1>
+        <h1>Atender Pedido</h1>
     </div>
 
     <div class="row">
@@ -21,7 +21,7 @@
                 </mat-form-field>
                 <mat-form-field class="w100" appearance="fill">
                     <mat-label>Precio</mat-label>
-                    <input [(ngModel)]="order.totalPrice" type="text" name="precio"
+                    <input [(ngModel)]="order.preciocli" type="text" name="precio"
                         placeholder="Digite el precio del producto" matInput disabled>
                 </mat-form-field>
                 <mat-form-field class="w100" appearance="fill">

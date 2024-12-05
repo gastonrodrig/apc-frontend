@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAddressComponent } from 'src/app/components/modal/add-address/add-address.component';
-import { AddPaymentComponent } from 'src/app/components/modal/add-payment/add-payment.component';
 import { InventarioService } from 'src/app/services/inventario.service';
 
 @Component({
@@ -51,10 +50,6 @@ export class EnvioComponent implements OnInit {
   direccionesFiltradas: any[] = [];
   districtType: any
 
-  // Pago
-
-  hourMinutes: any
-
   // Guardar Orden en la BD
 
   producto = {
@@ -93,20 +88,20 @@ export class EnvioComponent implements OnInit {
     },
   };
 
-    // 1er Formulario
+  // 1er Formulario
 
-    firstFormGroup = this._formBuilder.group({
-      address: ['', Validators.required],
-    });
-  
-    onSubmitForm_1() {
-      if (!this.firstFormGroup.valid) {
-        this.snack.open('Debe seleccionar una dirección', '', {
-          duration: 3000,
-        });
-        return;
-      }
+  firstFormGroup = this._formBuilder.group({
+    address: ['', Validators.required],
+  });
+
+  onSubmitForm_1() {
+    if (!this.firstFormGroup.valid) {
+      this.snack.open('Debe seleccionar una dirección', '', {
+        duration: 3000,
+      });
+      return;
     }
+  }
 
   // 2do Formulario
 
@@ -154,7 +149,7 @@ export class EnvioComponent implements OnInit {
         if (value.length !== 11) {
           return { invalidRUC: true };
         }
-        const stockRegex = /^10\d{9}$/;
+        const stockRegex = /^(10|20)\d{9}$/;
         if (!stockRegex.test(value)) {
           return { invalidRUCFormat: true };
         }
@@ -167,7 +162,6 @@ export class EnvioComponent implements OnInit {
   validFirstStep: boolean = false;
 
   onSubmitForm_2() {
-
     if (!this.secondFormGroup.valid) {
       this.snack.open('Debe Seleccionar el Tipo de Documento', '', {
         duration: 3000,
@@ -186,7 +180,7 @@ export class EnvioComponent implements OnInit {
           });
           return;
         } else if (errors['invalidRUCFormat']) {
-          this.snack.open('El número del documento (RUC) debe iniciar con 10', '', {
+          this.snack.open('El número del documento (RUC) debe iniciar con 10 o 20', '', {
             duration: 3000,
           });
           return;
@@ -195,11 +189,10 @@ export class EnvioComponent implements OnInit {
 
       return;
     }
+
+    // Aquí termina el proceso de cotización
+    this.guardarInformacion();
   }
-
-  // 3er Formulario
-
-  dataPago: any
 
   constructor(
     private snack: MatSnackBar,
@@ -238,23 +231,12 @@ export class EnvioComponent implements OnInit {
   }
 
   guardarInformacion() {
-    console.log(this.dataPago)
-    if(this.dataPago === undefined) {
-      this.snack.open('El pago no ha sido registrado', '', {
-        duration: 3000,
-      });
-      return;
-    } 
-
-    this.hourMinutes = this.dataPago.hourMinutes
-    this.orderData.fechaOperacion = this.formatDate() + 'T' + this.getCurrentTimeFormatted()
-    this.orderData.noperacion = this.dataPago.nOperacion
-    this.orderData.totalPrice = this.totalCart()
+    this.orderData.totalPrice = this.totalCart();
 
     this.orderService.agregarOrder(this.orderData).subscribe(
       (data: any) => {
-        console.log(data)
-        Swal.fire('Orden guardada', 'Se ha agregado su orden', 'success');
+        console.log(data);
+        Swal.fire('Cotización guardada', 'Se ha agregado su cotización', 'success');
         const orderIdData = data.orderId;
 
         this.myList.forEach((element) => {
@@ -266,67 +248,54 @@ export class EnvioComponent implements OnInit {
           this.orderDetailsData.product.productoId = element.productoId;
           this.producto.productoId = this.orderDetailsData.product.productoId;
 
-          this.orderDetailsService
-            .agregarOrdersDetail(this.orderDetailsData)
-            .subscribe(
-              (data: any) => {
-                const storedList = localStorage.getItem('myList');
-                // Verificar que el objeto exista y no sea null
-                if (storedList) {
-                  // Parsear el objeto
-                  let myList = JSON.parse(storedList);
-                  // Vaciar el objeto
-                  myList = [];
-                  // Guardar el objeto vacío de nuevo en el local storage
-                  localStorage.setItem('myList', JSON.stringify(myList));
-                } else {
-                  console.log(
-                    'No se encontró ningún objeto con la clave "myList" en el local storage.'
-                  );
-                }
-              },
-              (error) => {
-                console.log(error);
-                Swal.fire('Error !!', 'Error al cargar los datos', 'error');
+          this.orderDetailsService.agregarOrdersDetail(this.orderDetailsData).subscribe(
+            (data: any) => {
+              const storedList = localStorage.getItem('myList');
+              if (storedList) {
+                let myList = JSON.parse(storedList);
+                myList = [];
+                localStorage.setItem('myList', JSON.stringify(myList));
+              } else {
+                console.log('No se encontró ningún objeto con la clave "myList" en el local storage.');
               }
-            );
+            },
+            (error) => {
+              console.log(error);
+              Swal.fire('Error !!', 'Error al cargar los datos', 'error');
+            }
+          );
 
-            const movimiento = {
-              cantidad: this.orderDetailsData.quantity,
-              tipo: 'Reservado',
-              dateCreated: this.getCurrentDate(),
-              producto: {
-                productoId: this.orderDetailsData.product.productoId
-              },
-            };
-        
-            console.log('Movimiento:', movimiento);
-    
-            this.inventarioService.agregarProductoInventario(movimiento).subscribe(
-              (dataMovimiento) => {
-                
-              },
-              (errorMovimiento) => {
-                Swal.fire('Error en el sistema', 'No se ha podido registrar el movimiento', 'error');
-                console.log(errorMovimiento);
-              }
-            );
+          const movimiento = {
+            cantidad: this.orderDetailsData.quantity,
+            tipo: 'Reservado',
+            dateCreated: this.getCurrentDate(),
+            producto: {
+              productoId: this.orderDetailsData.product.productoId
+            },
+          };
+
+          console.log('Movimiento:', movimiento);
+
+          this.inventarioService.agregarProductoInventario(movimiento).subscribe(
+            (dataMovimiento) => {},
+            (errorMovimiento) => {
+              Swal.fire('Error en el sistema', 'No se ha podido registrar el movimiento', 'error');
+              console.log(errorMovimiento);
+            }
+          );
 
           element.stock = element.stock - this.orderDetailsData.quantity;
 
           this.productoService.actualizarProducto(element).subscribe(
-            (data: any) => {
-
-            },
+            (data: any) => {},
             (error) => {
               Swal.fire('Error !!', 'Error al cargar los datos', 'error');
             }
           );
         });
-        Swal.fire('Orden guardada', 'Se ha agregado su orden', 'success').
-          then((e) => {
-            this.router.navigate(['/user/historial-de-pedidos']);
-          });
+        Swal.fire('Cotización guardada', 'Se ha agregado su cotización', 'success').then((e) => {
+          this.router.navigate(['/user/historial-de-pedidos']);
+        });
       },
       (error) => {
         console.log(error);
@@ -335,45 +304,9 @@ export class EnvioComponent implements OnInit {
     );
   }
 
-  formatDate() {
-    const fechaString = this.dataPago.fechaOperacion.toString();
-  
-    // Crear objeto de fecha
-    const fecha = new Date(fechaString);
-    // Obtener año, mes y día
-    const year = fecha.getFullYear();
-    const month = ('0' + (fecha.getMonth() + 1)).slice(-2); // Sumar 1 al mes ya que en JavaScript los meses van de 0 a 11
-    const day = ('0' + fecha.getDate()).slice(-2);
-  
-    // Formatear en YYYY-MM-DD
-    const formattedDate = `${year}-${month}-${day}`;
-
-    return formattedDate;
-  }
-
-  getCurrentTimeFormatted() {
-    if (this.hourMinutes) {
-      const [hours, minutes] = this.hourMinutes.split(':');
-      if(Number(hours) < 4) {
-        const horaReal = Number(hours) + 5
-        const horaString = "0"+horaReal
-        return `${horaString}:${minutes}:00.000000`;
-      } else {
-        const horaReal = Number(hours) + 5;
-        return `${horaReal.toString()}:${minutes}:00.000000`;
-      }
-    } else {
-      return 'this.hourMinutes no está definido o es undefined';
-    }
-  }
-
-  roundToDecimals(num: number, decimals: number): number {
-    const factor = Math.pow(10, decimals);
-    return Math.round(num * factor) / factor;
-  }
-
-  onMatFieldChange(): void {
-    this.validFirstStep = false;
+  getCurrentDate(): string {
+    const currentDate = new Date();
+    return currentDate.toISOString();
   }
 
   openAddressDialog() {
@@ -382,7 +315,7 @@ export class EnvioComponent implements OnInit {
       height: '82%'
     });
 
-    dialogRef.afterClosed().subscribe( data => {
+    dialogRef.afterClosed().subscribe(data => {
       this.addressesService.listarAddressesByUser(this.user.id).subscribe(
         (data: any) => {
           this.direccionesFiltradas = data;
@@ -391,89 +324,7 @@ export class EnvioComponent implements OnInit {
           Swal.fire('Error !!', 'Error al cargar los datos', 'error');
         }
       )
-      }
-    )
-  }
-
-  openPaymentDialog(metodoPago: any) {
-    this.metodoPago = metodoPago
-    if(this.metodoPago === 1) {
-      this.dataPago = undefined
-      if(this.totalCart() > 500) {
-        this.snack.open('El pago supera los S/.500 (Cantidad Máxima en Yape)', '', {
-          duration: 3000,
-        });
-        return;
-      }
-      this.orderData.tipoOperacion = 'Yape'
-      const dialogRef = this.dialog.open(AddPaymentComponent, {
-        data: {
-          metodoPago: 1,
-          total: this.totalCart()
-        },
-        width: '50%',
-        height: '82%'
-      });
-
-      dialogRef.afterClosed().subscribe(res => {
-        this.dataPago = res.data
-      })
-
-    } 
-    if(this.metodoPago === 2) {
-      this.dataPago = undefined
-      this.orderData.tipoOperacion = 'BCP'
-      const dialogRef = this.dialog.open(AddPaymentComponent, {
-        data: {
-          metodoPago: 2,
-          total: this.totalCart()
-        },
-        width: '45%',
-        height: '82%'
-      });
-
-      dialogRef.afterClosed().subscribe(res => {
-        this.dataPago = res.data
-      })
-    }
-    if(this.metodoPago === 3) {
-      this.dataPago = undefined
-      if(this.totalCart() > 500) {
-        this.snack.open('El pago supera los S/.500 (Cantidad Máxima en Plin)', '', {
-          duration: 3000,
-        });
-        return;
-      }
-      this.orderData.tipoOperacion = 'Plin'
-      const dialogRef = this.dialog.open(AddPaymentComponent, {
-        data: {
-          metodoPago: 3,
-          total: this.totalCart()
-        },
-        width: '50%',
-        height: '82%'
-      });
-
-      dialogRef.afterClosed().subscribe(res => {
-        this.dataPago = res.data
-      })
-    }
-    if(this.metodoPago === 4) {
-      this.dataPago = undefined
-      this.orderData.tipoOperacion = 'CCI'
-      const dialogRef = this.dialog.open(AddPaymentComponent, {
-        data: {
-          metodoPago: 4,
-          total: this.totalCart()
-        },
-        width: '45%',
-        height: '82%'
-      });
-
-      dialogRef.afterClosed().subscribe(res => {
-        this.dataPago = res.data
-      })
-    }
+    });
   }
 
   loadFromLocalStorage() {
@@ -488,40 +339,34 @@ export class EnvioComponent implements OnInit {
   }
 
   subtotal() {
-    const subtotal = this.totalCart() * (1-0.18)
+    const subtotal = this.totalCart() * (1 - 0.18);
     return Number(subtotal.toFixed(2));
   }
 
   igv() {
-    const igv = this.totalCart() * (0.18)
+    const igv = this.totalCart() * 0.18;
     return Number(igv.toFixed(2));
   }
 
   totalCart() {
-    const total = this.myList.reduce(function (acc, product) { return acc + (product.cantidad * product.precio); }, 0) + this.orderData.deliveryPrice
-    return total
-  }
-
-  getCurrentDate(): string {
-    const currentDate = new Date();
-    return currentDate.toISOString();
+    const total = this.myList.reduce(function (acc, product) { return acc + (product.cantidad * product.precio); }, 0) + this.orderData.deliveryPrice;
+    return total;
   }
 
   onAddressChange(direccion: any) {
     this.orderData.streetAddress = `${direccion.name}, ${direccion.district.name}, ${direccion.province.name}, ${direccion.department.name}`;
-    this.districtType = direccion.district.type
-    if(this.districtType === 'A') {
+    this.districtType = direccion.district.type;
+    if (this.districtType === 'A') {
       this.orderData.deliveryPrice = 0;
     }
-    if(this.districtType === 'B') {
+    if (this.districtType === 'B') {
       this.orderData.deliveryPrice = 10;
     }
-    if(this.districtType === 'C') {
-      this.orderData.deliveryPrice = 15
+    if (this.districtType === 'C') {
+      this.orderData.deliveryPrice = 15;
     }
-    if(this.districtType === 'D') {
-      this.orderData.deliveryPrice = 30
+    if (this.districtType === 'D') {
+      this.orderData.deliveryPrice = 30;
     }
   }
-
 }

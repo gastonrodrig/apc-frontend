@@ -36,37 +36,6 @@
           </div>
         </div>
       </div>
-      <div class="py-2">
-        <div class="card-header d-flex align-items-start">
-          <h3 class="title"><strong>Precio</strong></h3>
-        </div>
-        <div class="filter-content text-left">
-          <div class="card-body">
-            <form>
-              <label class="form-check d-flex align-items-start">
-                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 0, 50)"
-                  style="margin-right: 8px;">
-                <span class="form-check-label">Menos de S/.50</span>
-              </label>
-              <label class="form-check d-flex align-items-start">
-                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 50, 100)"
-                  style="margin-right: 8px;">
-                <span class="form-check-label">S/.50 - S/.100</span>
-              </label>
-              <label class="form-check d-flex align-items-start">
-                <input class="form-check-input" type="checkbox" (change)="filtrarProductosPorPrecio($event, 100, 150)"
-                  style="margin-right: 8px;">
-                <span class="form-check-label">S/.100 - S/.150</span>
-              </label>
-              <label class="form-check d-flex align-items-start">
-                <input class="form-check-input" type="checkbox"
-                  (change)="filtrarProductosPorPrecio($event, 150, 100000)" style="margin-right: 8px;">
-                <span class="form-check-label">Mas de S/.150</span>
-              </label>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div [ngClass]="{

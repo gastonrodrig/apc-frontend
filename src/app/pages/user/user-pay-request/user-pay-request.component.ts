@@ -1,14 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddPaymentComponent } from 'src/app/components/modal/add-payment/add-payment.component';
-import { InventarioService } from 'src/app/services/inventario.service';
 import { LoginService } from 'src/app/services/login.service';
 import { OrdersService } from 'src/app/services/orders.service';
-import { OrdersDetailsService } from 'src/app/services/ordersdetails.service';
-import { SolicitudService } from 'src/app/services/solicitud.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,10 +16,10 @@ export class UserPayRequestComponent {
 
   dataPago: any
   hourMinutes: any
-  solicitud: any
+  order: any
   metodoPago: any
   documento: any
-  solicitudId = 0
+  orderId = 0
 
   user = {
     id: ''
@@ -35,6 +31,7 @@ export class UserPayRequestComponent {
     streetAddress: '',
     deliveryPrice: 0,
     totalPrice: 0,
+    preciocli: 0,
     subtotalPrice: 0,
     user: {
       id: '',
@@ -45,40 +42,22 @@ export class UserPayRequestComponent {
     tipoOperacion: ''
   };
 
-  orderDetailsData = {
-    createdAt: '',
-    quantity: 0,
-    totalPrice: 0,
-    unitPrice: 0,
-    updatedAt: '',
-    order: {
-      orderId: '',
-    },
-    product: {
-      productoId: '',
-    },
-  };
-
   constructor(
     private snack: MatSnackBar,
     public dialog: MatDialog,
     private loginService: LoginService,
-    private solicitudService: SolicitudService,
     private orderService: OrdersService,
-    private ordersDetailsService: OrdersDetailsService,
-    private http: HttpClient,
     private router: Router,
-    private inventarioService: InventarioService,
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.user = this.loginService.getUser();
     this.orderData.user.id = this.user.id;
-    this.solicitudId = this.route.snapshot.params['solicitudId'];
-    this.solicitudService.obtenerSolicitud(this.solicitudId).subscribe(
+    this.orderId = this.route.snapshot.params['orderId'];
+    this.orderService.obtenerOrder(this.orderId).subscribe(
       (data) => {
-        this.solicitud = data
+        this.order = data
       }
     )
   }
@@ -95,16 +74,16 @@ export class UserPayRequestComponent {
     this.hourMinutes = this.dataPago.hourMinutes
 
     this.orderData.createdAt = this.getCurrentDate()
-    this.orderData.status = 'Solicitado'
-    this.orderData.subtotalPrice = this.totalCart()
-    this.orderData.deliveryPrice = this.solicitud.deliveryPrice
-    this.orderData.totalPrice = this.solicitud.totalPrice
+    this.orderData.subtotalPrice = this.order.subtotalPrice
+    this.orderData.deliveryPrice = this.order.deliveryPrice
+    this.orderData.totalPrice = this.order.totalPrice
+    this.orderData.preciocli = this.order.preciocli
     this.orderData.documento = '76588310'
-    this.orderData.streetAddress = this.solicitud.streetAddress
+    this.orderData.streetAddress = this.order.streetAddress
     this.orderData.fechaOperacion = this.formatDate() + 'T' + this.getCurrentTimeFormatted()
     this.orderData.noperacion = this.dataPago.nOperacion
-    this.solicitud.status = 'Pagado';
-    this.solicitud.user = {
+    this.order.status = 'Pagado';
+    this.order.user = {
       accountNonExpired: false,
       accountNonLocked: false,
       apellido: null,
@@ -112,49 +91,25 @@ export class UserPayRequestComponent {
       credentialsNonExpired: false,
       email: null,
       enabled: false,
-      id: this.solicitud.user.id,
+      id: this.order.user.id,
       nombre: null,
       password: null,
       perfil: null,
       telefono: null,
       username: null
     };
-    this.solicitudService.actualizarSolicitud(this.solicitud).subscribe(
+    this.orderService.actualizarOrder(this.order).subscribe(
     (data: any) => {
       console.log(data)
       Swal.fire('Orden guardada', 'Se ha agregado su orden', 'success')
       .then((e) => {
-        this.router.navigate(['/user/solicitudes']);
+        this.router.navigate(['/user/historial-de-pedidos']);
       });
     },
     (error) => {
       console.log(error); 
       Swal.fire('Error !!', 'Error al cargar los datos', 'error');
     })
-    this.orderService.agregarOrder(this.orderData).subscribe(
-      (data: any) => {
-        
-        const order = data
-
-        this.orderDetailsData.order.orderId = data.orderId
-        this.orderDetailsData.createdAt = this.getCurrentDate()
-        this.orderDetailsData.quantity = this.solicitud.quantity
-        this.orderDetailsData.totalPrice = this.solicitud.quantity * this.solicitud.unitPrice
-        this.orderDetailsData.unitPrice = this.solicitud.unitPrice
-        this.orderDetailsData.product.productoId = this.solicitud.product.productoId
-
-        this.ordersDetailsService.agregarOrdersDetail(this.orderDetailsData).subscribe((data)=> {}, (error) => {})
-
-        Swal.fire('Orden guardada', 'Se ha agregado su orden', 'success')
-        .then((e) => {
-          this.router.navigate(['/user/solicitudes']);
-        });
-      },
-      (error) => {
-        console.log(error); 
-        Swal.fire('Error !!', 'Error al cargar los datos', 'error');
-      }
-    );
   }
 
   formatDate() {
@@ -185,7 +140,7 @@ export class UserPayRequestComponent {
   }
 
   totalCart() {
-    return this.solicitud.quantity * this.solicitud.unitPrice
+    return this.order.preciocli
   }
 
   subtotal() {

@@ -1,2 +1,7 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<!-- Navbar: solo se muestra si no estamos en una ruta específica -->
+<nav *ngIf="!hideNavbar">
+    <app-navbar></app-navbar>
+  </nav>
+  
+  <!-- Vista principal -->
+  <router-outlet></router-outlet>

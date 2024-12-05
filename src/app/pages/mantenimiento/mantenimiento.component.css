@@ -1,0 +1,42 @@
+h1 {
+    color: #00CED1;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  
+  img {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    height: auto;    /* Mantiene la proporción original de la imagen */
+  }
+  
+  .img-responsive {
+    max-width: 500px; /* Ancho máximo permitido para las imágenes */
+    max-height: 300px; /* Alto máximo permitido */
+    width: 100%;       /* Asegura que la imagen se redimensione en pantallas pequeñas */
+    height: auto;      /* Mantiene la proporción original */
+    object-fit: cover; /* Ajusta la imagen si es necesario para rellenar el contenedor */
+  }
+  
+  /* Hace que las imágenes en pantallas pequeñas estén abajo del texto */
+  @media (max-width: 768px) {
+    .row.d-flex {
+      flex-direction: column !important; /* Cambia la dirección a columna en pantallas pequeñas */
+    }
+    .col-md-6 {
+      text-align: center; /* Centra el texto y las imágenes */
+      margin-bottom: 20px; /* Añade un margen en la parte inferior para que no se amontonen */
+    }
+    /* Asegura que las imágenes en pantallas pequeñas tengan un tamaño más adecuado */
+    .img-responsive {
+      max-width: 100%;  /* Se ajusta al ancho de la pantalla */
+      max-height: 300px; /* Limita la altura a 300px */
+    }
+  }
+  

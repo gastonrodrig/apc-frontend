@@ -7,42 +7,61 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ng-container *ngIf="!isLoggedIn; else loggedIn">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/catalogo">Productos</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" routerLinkActive="active" routerLink="/login">Iniciar sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/signup">Registrar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
-          </li>
-        </ul>
-      </ng-container>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+        <!-- Productos siempre visible -->
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/catalogo">
+            <i class="fa-solid fa-box me-2"></i> Productos
+          </a>
+        </li>
 
-      <ng-template #loggedIn>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- Servicio Técnico siempre visible -->
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/servicio-tecnico">
+            <i class="fa-solid fa-screwdriver-wrench me-2"></i> Servicio Técnico
+          </a>
+        </li>
+
+        <!-- Menú desplegable del usuario -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user me-2"></i> Mi Cuenta
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <!-- Verifica si el usuario está logueado -->
+            <ng-container *ngIf="!isLoggedIn; else loggedInDropdown">
+              <li>
+                <a class="dropdown-item" routerLink="/login">Iniciar sesión</a>
+              </li>
+            </ng-container>
+            <ng-template #loggedInDropdown>
+              <li>
+                <button class="dropdown-item" (click)="navigateUser()">
+                  Dashboard
+                </button>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+              </li>
+            </ng-template>
+          </ul>
+        </li>
+
+        <!-- Ícono de carrito solo visible si no es 'admin' -->
+        <ng-container *ngIf="isLoggedIn && user?.username !== 'admin'">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/catalogo">Productos</a>
+            <a class="nav-link" routerLink="/carrito">
+              <i class="fa-solid fa-cart-shopping me-2"></i> Carrito de Cotización
+            </a>
           </li>
-          <li class="nav-item">
-            <button class="nav-link" routerLinkActive="active" (click)="logout()">Cerrar Sesión
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" routerLinkActive="active" (click)="navigateUser()">
-              {{ user?.username || 'Usuario' }}
-            </button>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
-          </li>
-        </ul>
-      </ng-template>
+        </ng-container>
+      </ul>
     </div>
   </div>
 </nav>

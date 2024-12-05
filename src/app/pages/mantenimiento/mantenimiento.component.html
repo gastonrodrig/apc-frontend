@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <!-- Mantenimientos Preventivos -->
+    <div class="row align-items-center mb-5 d-flex flex-column flex-md-row">
+      <div class="col-md-6">
+        <h1 class="mb-4">Mantenimientos Preventivos</h1>
+        <p>
+          El mantenimiento preventivo es clave para asegurar el correcto
+          funcionamiento de tus equipos y prevenir fallos inesperados. Este tipo
+          de mantenimiento incluye actividades como limpieza, ajuste, y
+          reemplazo de piezas desgastadas, lo que ayuda a prolongar la vida útil
+          de tus equipos.
+        </p>
+        <p>
+          Realizar mantenimientos preventivos de manera periódica reduce costos
+          a largo plazo y asegura la eficiencia operativa.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img
+          src="https://cdn.prod.website-files.com/63bdb337ecc33e62d2fe0f65/645ac1cc17bfd02dab2fb1ad_Importancia%20del%20mantenimiento%20al%20equipo%20me%CC%81dico%20-%20BG_clipdrop-enhance.jpeg"
+          alt="Mantenimiento Preventivo"
+          class="img-fluid rounded img-responsive"
+        />
+      </div>
+    </div>
+  
+    <!-- Mantenimientos Correctivos -->
+    <div class="row align-items-center mb-5 d-flex flex-column flex-md-row">
+      <div class="col-md-6 order-md-2">
+        <h1 class="mb-4">Mantenimientos Correctivos</h1>
+        <p>
+          El mantenimiento correctivo se realiza cuando los equipos ya presentan
+          fallas o daños. Este tipo de mantenimiento se enfoca en identificar y
+          solucionar los problemas de manera eficiente para minimizar tiempos de
+          inactividad.
+        </p>
+        <p>
+          Nuestro equipo de expertos está preparado para atender cualquier tipo
+          de fallo en tus equipos, asegurando una reparación rápida y
+          efectiva.
+        </p>
+      </div>
+      <div class="col-md-6 text-center order-md-1">
+        <img
+          src="https://pmd.com.pe/wp-content/uploads/2015/08/mantenimiento-equipos-medicos2.jpg"
+          alt="Mantenimiento Correctivo"
+          class="img-fluid rounded img-responsive"
+        />
+      </div>
+    </div>
+  
+    <!-- Botón -->
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <button 
+          class="btn btn-primary btn-lg" style="background-color: #00CED1; border-color: #00CED1;" 
+          (click)="handleCotizaClick()">
+          {{ isLoggedIn ? 'Cotiza tu mantenimiento' : 'Inicia sesión para cotizar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+  

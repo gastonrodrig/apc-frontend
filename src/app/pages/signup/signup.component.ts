@@ -46,8 +46,8 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    if(this.user.password.length !== 6){
-      this.snack.open('La contraseña debe tener 6 caracteres como mínimo !!','Aceptar',{
+    if(this.user.password.length < 8){
+      this.snack.open('La contraseña debe tener 8 caracteres como mínimo !!','Aceptar',{
         duration : 3000,
       });
       return;

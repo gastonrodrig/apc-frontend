@@ -1,0 +1,49 @@
+<mat-card style="padding: 15px;">
+    <div class="link-container">
+        <a (click)="volverAProductos()" class="link-text"> < Volver</a>
+    </div>
+    <div class="container">
+        <h1>Atender Pedido</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form *ngIf="orders" (submit)="actualizarDatos()">
+                <mat-form-field class="w-50" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input [(ngModel)]="orders.user.nombre" type="text" name="nombre"
+                        placeholder="Digite el nombre del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w-50" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input [(ngModel)]="orders.user.apellido" type="text" name="apellido"
+                        placeholder="Digite el nombre del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>DNI/RUC</mat-label>
+                    <input [(ngModel)]="orders.documento" type="text" name="precio"
+                        placeholder="Digite el precio del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Precio Referencial</mat-label>
+                    <input [(ngModel)]="orders.totalPrice" type="number" name="stock" placeholder="Digite la cantidad del producto" matInput disabled>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Monto a Pagar</mat-label>
+                    <input [(ngModel)]="orders.preciocli" type="number" name="preciocli" placeholder="Digite el precio del cliente" matInput>
+                    <mat-error *ngIf="orders.preciocli <= orders.totalPrice">
+                        El precio del cliente debe ser mayor al monto pagado.
+                    </mat-error>
+                </mat-form-field>
+                <div class="dflex justify-content-center">
+                    <div class="me-2 containeractualizar text-center">
+                        <button mat-raised-button type="submit" style="background-color: #00CED1; color: white;">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="me-2 containeractualizar text-center">
+                <button mat-raised-button (click)="rechazarSolicitud()" style="background-color: #00CED1; color: white;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</mat-card>

@@ -23,13 +23,13 @@
             <td>{{ e.user.nombre + " " + e.user.apellido }}</td>
             <td>{{ e.streetAddress }}</td>
             <td>{{ e.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</td>
-            <td>{{ e.totalPrice | currency:'S/. ':'symbol':'1.2-2' }}</td>
+            <td>{{ e.preciocli ? (e.preciocli | currency:'S/. ':'symbol':'1.2-2') : '-' }}</td>
             <td>{{ e.status }}</td>
             <td>
                 <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono">
                     <i [routerLink]="'/admin/detalle-pedido/'+e.orderId" class="fas fa-info-circle"></i>
                 </div>
-                <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono" *ngIf="e.status !== 'Entregado' && e.status !== 'Solicitado' && e.status !== 'Rechazado'">
+                <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono" *ngIf="e.status !== 'Entregado' && e.status !== 'Solicitado' && e.status !== 'Rechazado' && e.status !== 'Aceptado'">
                     <i [routerLink]="'/admin/actualizar-pedido/'+e.orderId" class="fas fa-edit"></i>
                 </div>
                 <div style="padding-left: 5px; padding-right: 5px;" class="detalle-icono" *ngIf="e.status === 'Solicitado'">

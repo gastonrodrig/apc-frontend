@@ -1,31 +1,86 @@
-<div class="bootstrap-wrapper">
-  <div class="container">
+<section class="vh-100">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <mat-card class="login-card">
-          <div class="container text-center" style="padding-top: 20px;">
-            <img src="../../../assets/logo.png" alt="Logo" width="200" height="120">
-          </div>
-          <form (ngSubmit)="formSubmit()" class="form-container">
-            <mat-form-field class="full-width">
-              <mat-label>Nombre de usuario</mat-label>
-              <input [(ngModel)]="loginData.username" name="username" required matInput
-                placeholder="Digite su nombre de usuario">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <mat-label>Contraseña</mat-label>
-              <input [(ngModel)]="loginData.password" name="password" required type="password" matInput
-                placeholder="Digite su contraseña">
-            </mat-form-field>
-            <div class="container text-center" style="padding-bottom: 20px;">
-              <button type="submit" mat-raised-button class="login-button">Iniciar Sesión</button>
-              <button type="reset" mat-raised-button class="reset-button">Limpiar</button>
+      <!-- Columna izquierda con el formulario -->
+      <div class="col-sm-6 text-black d-flex justify-content-center align-items-center">
+        <div class="text-center" style="width: 23rem;">
+          <!-- Logo personalizado con enlace -->
+          <a href="/" class="d-block mb-4">
+            <img 
+              src="./../../../assets/logo.png" 
+              alt="Logo" 
+              class="img-fluid" 
+              style="width: 150px;"
+            />
+          </a>
+
+          <!-- Formulario -->
+          <form (ngSubmit)="formSubmit()">
+            <!-- Título ajustado -->
+            <h3 
+              class="fw-bold mb-4" 
+              style="letter-spacing: 1px; font-size: 1.25rem;"
+            >
+              Inicia sesión
+            </h3>
+
+            <!-- Campo de nombre de usuario -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="username">Usuario</label>
+              <input 
+                type="text" 
+                id="username" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="loginData.username" 
+                name="username" 
+                style="font-size: 1rem;"
+                required 
+              />
             </div>
+
+            <!-- Campo de contraseña -->
+            <div class="form-outline mb-4 text-start">
+              <label class="form-label" for="password">Contraseña</label>
+              <input 
+                type="password" 
+                id="password" 
+                class="form-control form-control-lg" 
+                [(ngModel)]="loginData.password" 
+                name="password" 
+                style="font-size: 1rem;"
+                required 
+              />
+            </div>
+
+            <!-- Botón de inicio de sesión ajustado -->
+            <div class="pt-3 mb-4">
+              <button 
+                class="btn btn-lg btn-block" 
+                type="submit"
+                style="font-size: 1rem; font-weight: normal; background-color: #00CED1; border-color: #00CED1;"
+              >
+                Iniciar sesión
+              </button>
+            </div>
+
+            <!-- Enlace de registro -->
+            <p class="pt-3">
+              ¿No tienes cuenta? 
+              <a routerLinkActive="active" routerLink="/signup" class="link-info" style="color: #00CED1;">Regístrate aquí</a>
+            </p>            
           </form>
-        </mat-card>
+        </div>
+      </div>
+
+      <!-- Columna derecha con la imagen -->
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img 
+          src="https://www.malekmedtec.com/assets/img/bg_.jpg" 
+          alt="Login image" 
+          class="w-100 vh-100" 
+          style="object-fit: cover; object-position: left;"
+        />
       </div>
     </div>
   </div>
-</div>
-
-<app-footer></app-footer>
+</section>

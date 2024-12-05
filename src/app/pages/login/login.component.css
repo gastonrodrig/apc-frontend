@@ -1,37 +1,7 @@
-.bootstrap-wrapper {
-
-    min-height: 93vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
   }
-  
-  .login-card {
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
-  .form-container {
-    padding: 20px;
-  }
-  
-  .login-button {
-    background-color: #00CED1;
-    color: white;
-    margin-right: 20px;
-  }
-  
-  .login-button:hover {
-    background-color: #43686d;
-  }
-  
-  .reset-button {
-    background-color: #76BFBE;
-    color: white;
-  }
-  
-  .reset-button:hover {
-    background-color: #5F9898;
-  }
-  
