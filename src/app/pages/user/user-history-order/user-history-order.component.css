@@ -2,7 +2,7 @@ table {
     width: 100%;
     border-collapse: collapse;
   }
-  
+
   th, td {
     padding: 8px;
     text-align: left;
@@ -31,13 +31,13 @@ table {
   }
   .search-icon {
     margin-right: 8px;
-    color: #555; 
+    color: #555;
   }
   .search-bar-container {
     margin-top:-10px;
     margin-bottom: 10px;
   }
-  
+
   .search-bar-input {
     padding: 8px;
     width: 200px;
@@ -45,7 +45,7 @@ table {
     border-radius: 4px;
     margin-right: 10px;
   }
-  
+
   a {
     text-decoration: none;
     color: #333;
@@ -57,16 +57,16 @@ table {
     padding-top: 10px;
     padding-bottom: 20px;
   }
-  
+
   h1, button {
     margin: 0;
     font-weight: bold;
   }
-  
+
   h1 {
     align-self: flex-start;
   }
-  
+
   button {
     align-self: flex-end;
   }
@@ -74,12 +74,12 @@ table {
     display: inline-block;
     cursor: pointer;
   }
-  
+
   .eliminar-icono i {
     color: black;
     transition: color 0.3s, transform 0.3s;
   }
-  
+
   .eliminar-icono:hover i {
     color: red;
     transform: scale(1.2);
@@ -88,12 +88,12 @@ table {
     display: inline-block;
     cursor: pointer;
   }
-  
+
   .editar-icono i {
     color: black;
     transition: color 0.3s, transform 0.3s;
   }
-  
+
   .editar-icono:hover i {
     color: #00adef;
     transform: scale(1.2);
@@ -102,36 +102,36 @@ table {
     display: inline-block;
     cursor: pointer;
   }
-  
+
   .detalle-icono i {
     color: black;
     transition: color 0.3s, transform 0.3s;
   }
-  
+
   .detalle-icono:hover i {
     color: #004aad;
     transform: scale(1.2);
   }
   .table-container {
     max-height: 500px;
-    
+
   }
-  
+
   table {
     width: 100%;
     border-collapse: collapse;
   }
-  
+
   th,
   td {
     padding: 8px;
     text-align: left;
   }
-  
+
   th {
     background-color: #f2f2f2;
   }
-  
+
   tr:nth-child(even) {
     background-color: #f9f9f9;
   }
@@ -141,7 +141,7 @@ table {
     padding: 10px;
     text-align: right;
   }
-  
+
   .pagination button {
     background: none;
     border: none;
@@ -150,20 +150,20 @@ table {
     transition: transform 0.3s;
     font-size: 18px;
   }
-  
+
   .pagination button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   .pagination button i {
     transition: transform 0.3s;
   }
-  
+
   .pagination button:hover {
     transform: scale(1.1);
   }
-  
+
   .pagination button:hover i {
     transform: translateX(5px);
   }
